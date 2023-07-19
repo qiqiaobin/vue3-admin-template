@@ -34,7 +34,7 @@ export const useThemeConfig = defineStore('themeConfig', {
 			// 默认菜单导航背景颜色
 			menuBar: '#ffffff',
 			// 默认菜单导航字体颜色
-			menuBarColor: '#eaeaea',
+			menuBarColor: '#606266',
 			// 默认菜单高亮背景色
 			menuBarActiveColor: 'rgba(0, 0, 0, 0.2)',
 
@@ -51,14 +51,6 @@ export const useThemeConfig = defineStore('themeConfig', {
 			 */
 			// 是否开启菜单水平折叠效果
 			isCollapse: false,
-
-			/**
-			 * 界面显示
-			 */
-			// 是否开启 Breadcrumb，强制经典、横向布局不显示
-			isBreadcrumb: false,
-			// 是否开启 Breadcrumb 图标
-			isBreadcrumbIcon: false,
 
 			/**
 			 * 其它设置

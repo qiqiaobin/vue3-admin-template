@@ -17,6 +17,9 @@
 				<ele-Search />
 			</el-icon>
 		</div>
+        <div class="layout-navbars-breadcrumb-user-icon" @click="onLayoutSetingClick">
+			<i class="icon-skin iconfont" title="布局配置"></i>
+		</div>
 		<div class="layout-navbars-breadcrumb-user-icon" ref="userNewsBadgeRef" v-click-outside="onUserNewsClick">
 			<el-badge :is-dot="true">
 				<el-icon title="消息">
@@ -73,6 +76,7 @@ import screenfull from 'screenfull';
 import { storeToRefs } from 'pinia';
 import { useUserInfo } from '/@/stores/userInfo';
 import { useThemeConfig } from '/@/stores/themeConfig';
+import mittBus from '/@/utils/mitt';
 import { Session, Local } from '/@/utils/storage';
 
 // 引入组件
@@ -114,6 +118,10 @@ const onScreenfullClick = () => {
 // 消息通知点击时
 const onUserNewsClick = () => {
 	unref(userNewsRef).popperRef?.delayHide?.();
+};
+// 布局配置 icon 点击时
+const onLayoutSetingClick = () => {
+	mittBus.emit('openSetingsDrawer');
 };
 // 下拉菜单点击时
 const onHandleCommandClick = (path: string) => {

@@ -52,33 +52,6 @@
 					</div>
 				</div>
 
-				<!-- 分栏设置 -->
-				<el-divider content-position="left" :style="{ opacity: getThemeConfig.layout !== 'columns' ? 0.5 : 1 }">分栏设置</el-divider>
-				<div class="layout-breadcrumb-seting-bar-flex" :style="{ opacity: getThemeConfig.layout !== 'columns' ? 0.5 : 1 }">
-					<div class="layout-breadcrumb-seting-bar-flex-label">分栏菜单背景</div>
-					<div class="layout-breadcrumb-seting-bar-flex-value">
-						<el-color-picker
-							v-model="getThemeConfig.columnsMenuBar"
-							size="default"
-							@change="onBgColorPickerChange('columnsMenuBar')"
-							:disabled="getThemeConfig.layout !== 'columns'"
-						>
-						</el-color-picker>
-					</div>
-				</div>
-				<div class="layout-breadcrumb-seting-bar-flex" :style="{ opacity: getThemeConfig.layout !== 'columns' ? 0.5 : 1 }">
-					<div class="layout-breadcrumb-seting-bar-flex-label">分栏菜单默认字体颜色</div>
-					<div class="layout-breadcrumb-seting-bar-flex-value">
-						<el-color-picker
-							v-model="getThemeConfig.columnsMenuBarColor"
-							size="default"
-							@change="onBgColorPickerChange('columnsMenuBarColor')"
-							:disabled="getThemeConfig.layout !== 'columns'"
-						>
-						</el-color-picker>
-					</div>
-				</div>
-
 				<!-- 界面设置 -->
 				<el-divider content-position="left">界面设置</el-divider>
 				<div class="layout-breadcrumb-seting-bar-flex" :style="{ opacity: getThemeConfig.layout === 'transverse' ? 0.5 : 1 }">
@@ -90,50 +63,6 @@
 							size="small"
 							@change="onThemeConfigChange"
 						></el-switch>
-					</div>
-				</div>
-				<div class="layout-breadcrumb-seting-bar-flex mt15">
-					<div class="layout-breadcrumb-seting-bar-flex-label">开启锁屏</div>
-					<div class="layout-breadcrumb-seting-bar-flex-value">
-						<el-switch v-model="getThemeConfig.isLockScreen" size="small" @change="setLocalThemeConfig"></el-switch>
-					</div>
-				</div>
-				<div class="layout-breadcrumb-seting-bar-flex mt11">
-					<div class="layout-breadcrumb-seting-bar-flex-label">自动锁屏(s/秒)</div>
-					<div class="layout-breadcrumb-seting-bar-flex-value">
-						<el-input-number
-							v-model="getThemeConfig.lockScreenTime"
-							controls-position="right"
-							:min="1"
-							:max="9999"
-							@change="setLocalThemeConfig"
-							size="default"
-							style="width: 90px"
-						>
-						</el-input-number>
-					</div>
-				</div>
-
-				<!-- 界面显示 -->
-				<el-divider content-position="left">界面显示</el-divider>
-				<div
-					class="layout-breadcrumb-seting-bar-flex mt15"
-					:style="{ opacity: getThemeConfig.layout === 'classic' || getThemeConfig.layout === 'transverse' ? 0.5 : 1 }"
-				>
-					<div class="layout-breadcrumb-seting-bar-flex-label">开启 Breadcrumb</div>
-					<div class="layout-breadcrumb-seting-bar-flex-value">
-						<el-switch
-							v-model="getThemeConfig.isBreadcrumb"
-							:disabled="getThemeConfig.layout === 'classic' || getThemeConfig.layout === 'transverse'"
-							size="small"
-							@change="onIsBreadcrumbChange"
-						></el-switch>
-					</div>
-				</div>
-				<div class="layout-breadcrumb-seting-bar-flex mt15">
-					<div class="layout-breadcrumb-seting-bar-flex-label">开启 Breadcrumb 图标</div>
-					<div class="layout-breadcrumb-seting-bar-flex-value">
-						<el-switch v-model="getThemeConfig.isBreadcrumbIcon" size="small" @change="setLocalThemeConfig"></el-switch>
 					</div>
 				</div>
 
@@ -150,74 +79,6 @@
 					</div>
 				</div>
 
-				<!-- 布局切换 -->
-				<el-divider content-position="left">布局切换</el-divider>
-				<div class="layout-drawer-content-flex">
-					<!-- defaults 布局 -->
-					<div class="layout-drawer-content-item" @click="onSetLayout('defaults')">
-						<section class="el-container el-circular" :class="{ 'drawer-layout-active': getThemeConfig.layout === 'defaults' }">
-							<aside class="el-aside" style="width: 20px"></aside>
-							<section class="el-container is-vertical">
-								<header class="el-header" style="height: 10px"></header>
-								<main class="el-main"></main>
-							</section>
-						</section>
-						<div class="layout-tips-warp" :class="{ 'layout-tips-warp-active': getThemeConfig.layout === 'defaults' }">
-							<div class="layout-tips-box">
-								<p class="layout-tips-txt">默认</p>
-							</div>
-						</div>
-					</div>
-					<!-- classic 布局 -->
-					<div class="layout-drawer-content-item" @click="onSetLayout('classic')">
-						<section class="el-container is-vertical el-circular" :class="{ 'drawer-layout-active': getThemeConfig.layout === 'classic' }">
-							<header class="el-header" style="height: 10px"></header>
-							<section class="el-container">
-								<aside class="el-aside" style="width: 20px"></aside>
-								<section class="el-container is-vertical">
-									<main class="el-main"></main>
-								</section>
-							</section>
-						</section>
-						<div class="layout-tips-warp" :class="{ 'layout-tips-warp-active': getThemeConfig.layout === 'classic' }">
-							<div class="layout-tips-box">
-								<p class="layout-tips-txt">经典</p>
-							</div>
-						</div>
-					</div>
-					<!-- transverse 布局 -->
-					<div class="layout-drawer-content-item" @click="onSetLayout('transverse')">
-						<section class="el-container is-vertical el-circular" :class="{ 'drawer-layout-active': getThemeConfig.layout === 'transverse' }">
-							<header class="el-header" style="height: 10px"></header>
-							<section class="el-container">
-								<section class="el-container is-vertical">
-									<main class="el-main"></main>
-								</section>
-							</section>
-						</section>
-						<div class="layout-tips-warp" :class="{ 'layout-tips-warp-active': getThemeConfig.layout === 'transverse' }">
-							<div class="layout-tips-box">
-								<p class="layout-tips-txt">横向</p>
-							</div>
-						</div>
-					</div>
-					<!-- columns 布局 -->
-					<div class="layout-drawer-content-item" @click="onSetLayout('columns')">
-						<section class="el-container el-circular" :class="{ 'drawer-layout-active': getThemeConfig.layout === 'columns' }">
-							<aside class="el-aside-dark" style="width: 10px"></aside>
-							<aside class="el-aside" style="width: 20px"></aside>
-							<section class="el-container is-vertical">
-								<header class="el-header" style="height: 10px"></header>
-								<main class="el-main"></main>
-							</section>
-						</section>
-						<div class="layout-tips-warp" :class="{ 'layout-tips-warp-active': getThemeConfig.layout === 'columns' }">
-							<div class="layout-tips-box">
-								<p class="layout-tips-txt">分栏</p>
-							</div>
-						</div>
-					</div>
-				</div>
 				<div class="copy-config">
 					<el-alert title="点击下方按钮，复制布局配置去 `src/store/modules/themeConfig.ts` 中修改。" type="warning" :closable="false"> </el-alert>
 					<el-button size="default" class="copy-config-btn" type="primary" ref="copyConfigBtnRef" @click="onCopyConfigClick">
@@ -287,19 +148,7 @@ const onBgColorPickerChange = (bg: string) => {
 const onThemeConfigChange = () => {
 	setDispatchThemeConfig();
 };
-// 4、界面显示 --> 面包屑 Breadcrumb
-const onIsBreadcrumbChange = () => {
-	setLocalThemeConfig();
-};
-// 5、布局切换
-const onSetLayout = (layout: string) => {
-	Local.set('oldLayout', layout);
-	if (getThemeConfig.value.layout === layout) return false;
-	if (layout === 'transverse') getThemeConfig.value.isCollapse = false;
-	getThemeConfig.value.layout = layout;
-	getThemeConfig.value.isDrawer = false;
-	initLayoutChangeFun();
-};
+
 // 设置布局切换函数
 const initLayoutChangeFun = () => {
 	onBgColorPickerChange('menuBar');
@@ -307,8 +156,6 @@ const initLayoutChangeFun = () => {
 	onBgColorPickerChange('menuBarActiveColor');
 	onBgColorPickerChange('topBar');
 	onBgColorPickerChange('topBarColor');
-	onBgColorPickerChange('columnsMenuBar');
-	onBgColorPickerChange('columnsMenuBarColor');
 };
 // 关闭弹窗时，初始化变量。变量用于处理 layoutScrollbarRef.value.update() 更新滚动条高度
 const onDrawerClose = () => {
@@ -348,11 +195,6 @@ const onResetConfigClick = () => {
 	// @ts-ignore
 	Local.set('version', __NEXT_VERSION__);
 };
-// 初始化菜单样式等
-const initSetStyle = () => {
-	// 2、菜单 / 顶栏 --> 分栏菜单背景渐变
-	onColumnsMenuBarGradualChange();
-};
 onMounted(() => {
 	nextTick(() => {
 		// 判断当前布局是否不相同，不相同则初始化当前布局的样式，防止监听窗口大小改变时，布局配置logo、菜单背景等部分布局失效问题
@@ -368,10 +210,6 @@ onMounted(() => {
 		setTimeout(() => {
 			// 默认样式
 			onColorPickerChange();
-			// 开启水印
-			onWartermarkChange();
-			// 初始化菜单样式等
-			initSetStyle();
 		}, 100);
 	});
 });

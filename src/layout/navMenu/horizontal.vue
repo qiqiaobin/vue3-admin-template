@@ -33,7 +33,7 @@ import { defineAsyncComponent, reactive, computed, onBeforeMount } from 'vue';
 import { useRoute, onBeforeRouteUpdate, RouteRecordRaw } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import { useRoutesList } from '/@/stores/routesList';
-import { useThemeConfig } from '/@/stores/themeConfig';
+import other from '/@/utils/other';
 import mittBus from '/@/utils/mitt';
 
 // 引入组件
@@ -50,9 +50,7 @@ const props = defineProps({
 
 // 定义变量内容
 const stores = useRoutesList();
-const storesThemeConfig = useThemeConfig();
 const { routesList } = storeToRefs(stores);
-const { themeConfig } = storeToRefs(storesThemeConfig);
 const route = useRoute();
 const state = reactive({
 	defaultActive: '' as string | undefined,
@@ -88,14 +86,12 @@ const setSendClassicChildren = (path: string) => {
 };
 // 设置页面当前路由高亮
 const setCurrentRouterHighlight = (currentRoute: RouteToFrom) => {
-	const { path, meta } = currentRoute;
-	if (themeConfig.value.layout === 'classic') {
-		state.defaultActive = `/${path?.split('/')[1]}`;
-	} else {
-		const pathSplit = meta?.isDynamic ? meta.isDynamicPath!.split('/') : path!.split('/');
-		if (pathSplit.length >= 4 && meta?.isHide) state.defaultActive = pathSplit.splice(0, 3).join('/');
-		else state.defaultActive = path;
-	}
+	const { path } = currentRoute;
+	state.defaultActive = `/${path?.split('/')[1]}`;
+};
+// 打开外部链接
+const onALinkClick = (val: RouteItem) => {
+	other.handleOpenLink(val);
 };
 // 页面加载前
 onBeforeMount(() => {

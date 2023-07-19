@@ -35,6 +35,7 @@ import { defineAsyncComponent, reactive, computed, onMounted, watch } from 'vue'
 import { useRoute, onBeforeRouteUpdate, RouteRecordRaw } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import { useThemeConfig } from '/@/stores/themeConfig';
+import other from '/@/utils/other';
 
 // 引入组件
 const SubItem = defineAsyncComponent(() => import('/@/layout/navMenu/subItem.vue'));
@@ -70,7 +71,10 @@ const setParentHighlight = (currentRoute: RouteToFrom) => {
 	if (pathSplit.length >= 4 && meta?.isHide) return pathSplit.splice(0, 3).join('/');
 	else return path;
 };
-
+// 打开外部链接
+const onALinkClick = (val: RouteItem) => {
+	other.handleOpenLink(val);
+};
 // 页面加载时
 onMounted(() => {
 	state.defaultActive = setParentHighlight(route);

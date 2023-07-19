@@ -11,7 +11,6 @@ import { defineAsyncComponent } from 'vue';
 const BreadcrumbIndex = defineAsyncComponent(() => import('/@/layout/navBars/topBar/index.vue'));
 
 // 定义变量内容
-
 </script>
 
 <style scoped lang="scss">

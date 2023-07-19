@@ -25,7 +25,6 @@ import mittBus from '/@/utils/mitt';
 
 // 引入组件
 const Vertical = defineAsyncComponent(() => import('/@/layout/navMenu/vertical.vue'));
-// 引入组件
 
 // 定义变量内容
 const layoutAsideScrollbarRef = ref();
@@ -91,7 +90,6 @@ const closeLayoutAsideMobileMode = () => {
 };
 // 设置/过滤路由（非静态路由/是否显示在菜单中）
 const setFilterRoutes = () => {
-	if (themeConfig.value.layout === 'columns') return false;
 	state.menuList = filterRoutesFun(routesList.value);
 };
 // 路由过滤递归函数

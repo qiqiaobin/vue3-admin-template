@@ -26,7 +26,7 @@
 git clone https://gitee.com/qiqb_admin/vue3-admin-template
 
 # 进入项目
-cd vue3-admin
+cd vue3-admin-template
 
 # 安装依赖
 cnpm install
