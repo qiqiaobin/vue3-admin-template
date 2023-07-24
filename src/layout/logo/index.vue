@@ -10,7 +10,7 @@
 <script setup lang="ts" name="layoutLogo">
 import { storeToRefs } from 'pinia';
 import { useThemeConfig } from '/@/stores/themeConfig';
-import logoMini from '/@/assets/logo-mini.svg';
+import logoMini from '/@/assets/logo.svg';
 
 // 定义变量内容
 const storesThemeConfig = useThemeConfig();
@@ -25,44 +25,38 @@ const onThemeConfigChange = () => {
 
 <style scoped lang="scss">
 .layout-logo {
-	width: 220px;
-	height: 50px;
+	width: 292px;
+	height: 60px;
 	display: flex;
 	align-items: center;
-	justify-content: center;
 	box-shadow: rgb(0 21 41 / 2%) 0px 1px 4px;
-	color: var(--el-color-primary);
+	color: #ffffff;
 	font-size: 16px;
 	cursor: pointer;
 	animation: logoAnimation 0.3s ease-in-out;
 	span {
 		white-space: nowrap;
 		display: inline-block;
+        padding-left: 13px;
 	}
-	&:hover {
-		span {
-			color: var(--color-primary-light-2);
-		}
-	}
+    
 	&-medium-img {
-		width: 20px;
-		margin-right: 5px;
+		width: 30px;
+		margin-left: 20px;
 	}
 }
 .layout-logo-size {
-	width: 100%;
-	height: 50px;
+    font-size: 16px;
+	height: 58px;
+    line-height: 58px;
+    margin-left: 33px;
+    padding-left: 38px;
 	display: flex;
 	cursor: pointer;
 	animation: logoAnimation 0.3s ease-in-out;
 	&-img {
 		width: 20px;
 		margin: auto;
-	}
-	&:hover {
-		img {
-			animation: logoAnimation 0.3s ease-in-out;
-		}
 	}
 }
 </style>

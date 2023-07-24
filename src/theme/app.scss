@@ -55,7 +55,7 @@ body,
 		flex: 1;
 	}
 	.layout-aside {
-		background: var(--next-bg-menuBar);
+		background: #ffffff;
 		box-shadow: 2px 0 6px rgb(0 21 41 / 1%);
 		height: inherit;
 		position: relative;
@@ -130,8 +130,8 @@ body,
 		border-right: 1px solid var(--el-border-color-light, #ebeef5);
 	}
 	// pc端左侧导航样式
-	.layout-aside-pc-160 {
-		width: 160px !important;
+	.layout-aside-pc-220 {
+		width: 220px !important;
 		transition: width 0.3s ease;
 	}
 	.layout-aside-pc-64 {
@@ -196,7 +196,7 @@ body,
 ------------------------------- */
 #nprogress {
 	.bar {
-		background: var(--el-color-primary) !important;
+		background: #3a84ff !important;
 		z-index: 9999999 !important;
 	}
 }
@@ -273,7 +273,7 @@ body,
 /* 颜色值
 ------------------------------- */
 .color-primary {
-	color: var(--el-color-primary);
+	color: #3a84ff;
 }
 .color-success {
 	color: var(--el-color-success);

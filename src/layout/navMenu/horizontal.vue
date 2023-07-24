@@ -4,7 +4,7 @@
 			<template v-for="val in menuLists">
 				<el-sub-menu :index="val.path" v-if="val.children && val.children.length > 0" :key="val.path">
 					<template #title>
-						<SvgIcon :name="val.meta.icon" />
+						<!--SvgIcon :name="val.meta.icon" /-->
 						<span>{{ val.meta.title }}</span>
 					</template>
 					<SubItem :chil="val.children" />
@@ -12,12 +12,12 @@
 				<template v-else>
 					<el-menu-item :index="val.path" :key="val.path">
 						<template #title v-if="!val.meta.isLink || (val.meta.isLink && val.meta.isIframe)">
-							<SvgIcon :name="val.meta.icon" />
+							<!--SvgIcon :name="val.meta.icon" /-->
 							{{ val.meta.title }}
 						</template>
 						<template #title v-else>
 							<a class="w100" @click.prevent="onALinkClick(val)">
-								<SvgIcon :name="val.meta.icon" />
+								<!--SvgIcon :name="val.meta.icon" /-->
 								{{ val.meta.title }}
 							</a>
 						</template>
@@ -111,17 +111,72 @@ onBeforeRouteUpdate((to) => {
 	flex: 1;
 	overflow: hidden;
 	margin-right: 30px;
-	:deep(.el-scrollbar__bar.is-vertical) {
-		display: none;
-	}
+
 	:deep(a) {
 		width: 100%;
 	}
-	.el-menu.el-menu--horizontal {
-		display: flex;
-		height: 100%;
-		width: 100%;
-		box-sizing: border-box;
+}
+
+// 横向菜单
+.el-menu--horizontal {
+	background: #182132;
+    .el-sub-menu {
+		height: 48px !important;
+		line-height: 48px !important;
+        font-size: 14px;
+		color: #182132;
+		.el-sub-menu__title {
+			height: 48px !important;
+			line-height: 48px !important;
+			color: #182132;
+            font-size: 14px;
+		}
+		.el-popper.is-pure.is-light {
+			.el-menu--horizontal {
+				.el-sub-menu .el-sub-menu__title {
+					background-color: #96a2b9;
+					color: #96a2b9;
+				}
+			}
+		}
+         // 鼠标 hover 时颜色
+    .el-menu-hover-bg-color {
+    background-color: #ffffff !important;
+    }
+    .el-menu-item {
+	height: 56px !important;
+	line-height: 56px !important;
+    }
+    .el-sub-menu__title {
+	color: #96a2b9;
+    }
+    .el-menu-item:hover {
+	background-color: #F6F6F9;
+    }
 	}
+}
+
+// 横向菜单（经典、横向）布局
+.el-menu--horizontal {
+	border-bottom: none !important;
+	width: 100% !important;
+	.el-menu-item,
+	.el-sub-menu__title {
+        border-bottom: none !important;
+		height: 48px !important;
+		color: #979ba5;
+        font-size: 14px;
+	}
+	.el-menu-item:not(.is-active):hover,
+	.el-sub-menu:not(.is-active):hover .el-sub-menu__title {
+		color: #e1ecff;
+	}
+    .el-menu-item.is-active,
+    .el-sub-menu.is-active .el-sub-menu__title,
+    .el-sub-menu:not(.is-opened):hover .el-sub-menu__title {
+    background: #31405e !important;
+    color: #ffffff !important;
+    border-bottom: none !important;
+   }
 }
 </style>

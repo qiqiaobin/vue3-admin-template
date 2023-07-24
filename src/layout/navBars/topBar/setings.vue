@@ -3,16 +3,16 @@
 		<el-drawer title="布局配置" v-model="getThemeConfig.isDrawer" direction="rtl" destroy-on-close size="260px" @close="onDrawerClose">
 			<el-scrollbar class="layout-breadcrumb-seting-bar">
 				<!-- 全局主题 -->
-				<el-divider content-position="left">全局主题</el-divider>
+				<!--el-divider content-position="left">全局主题</el-divider>
 				<div class="layout-breadcrumb-seting-bar-flex">
 					<div class="layout-breadcrumb-seting-bar-flex-label">primary</div>
 					<div class="layout-breadcrumb-seting-bar-flex-value">
 						<el-color-picker v-model="getThemeConfig.primary" size="default" @change="onColorPickerChange"> </el-color-picker>
 					</div>
-				</div>
+				</div-->
 
 				<!-- 顶栏设置 -->
-				<el-divider content-position="left">顶栏设置</el-divider>
+				<!--el-divider content-position="left">顶栏设置</el-divider>
 				<div class="layout-breadcrumb-seting-bar-flex">
 					<div class="layout-breadcrumb-seting-bar-flex-label">顶栏背景</div>
 					<div class="layout-breadcrumb-seting-bar-flex-value">
@@ -24,10 +24,10 @@
 					<div class="layout-breadcrumb-seting-bar-flex-value">
 						<el-color-picker v-model="getThemeConfig.topBarColor" size="default" @change="onBgColorPickerChange('topBarColor')"> </el-color-picker>
 					</div>
-				</div>
+				</div-->
 
 				<!-- 菜单设置 -->
-				<el-divider content-position="left">菜单设置</el-divider>
+				<!--el-divider content-position="left">菜单设置</el-divider>
 				<div class="layout-breadcrumb-seting-bar-flex">
 					<div class="layout-breadcrumb-seting-bar-flex-label">菜单背景</div>
 					<div class="layout-breadcrumb-seting-bar-flex-value">
@@ -50,7 +50,7 @@
 							@change="onBgColorPickerChange('menuBarActiveColor')"
 						/>
 					</div>
-				</div>
+				</div-->
 
 				<!-- 界面设置 -->
 				<el-divider content-position="left">界面设置</el-divider>
@@ -124,6 +124,7 @@ const getThemeConfig = computed(() => {
 	return themeConfig.value;
 });
 // 1、全局主题
+/*
 const onColorPickerChange = () => {
 	if (!getThemeConfig.value.primary) return ElMessage.warning('全局主题 primary 颜色值不能为空');
 	// 颜色加深
@@ -135,14 +136,15 @@ const onColorPickerChange = () => {
 	}
 	setDispatchThemeConfig();
 };
+*/
 // 2、菜单 / 顶栏
-const onBgColorPickerChange = (bg: string) => {
-	document.documentElement.style.setProperty(`--next-bg-${bg}`, themeConfig.value[bg]);
-	if (bg === 'menuBar') {
-		document.documentElement.style.setProperty(`--next-bg-menuBar-light-1`, getLightColor(getThemeConfig.value.menuBar, 0.05));
-	}
-	setDispatchThemeConfig();
-};
+//const onBgColorPickerChange = (bg: string) => {
+//	document.documentElement.style.setProperty(`--next-bg-${bg}`, themeConfig.value[bg]);
+//	if (bg === 'menuBar') {
+//		document.documentElement.style.setProperty(`--next-bg-menuBar-light-1`, getLightColor(getThemeConfig.value.menuBar, 0.05));
+//	}
+//	setDispatchThemeConfig();
+//};
 
 // 3、界面设置 --> 菜单水平折叠
 const onThemeConfigChange = () => {
@@ -150,13 +152,13 @@ const onThemeConfigChange = () => {
 };
 
 // 设置布局切换函数
-const initLayoutChangeFun = () => {
-	onBgColorPickerChange('menuBar');
-	onBgColorPickerChange('menuBarColor');
-	onBgColorPickerChange('menuBarActiveColor');
-	onBgColorPickerChange('topBar');
-	onBgColorPickerChange('topBarColor');
-};
+//const initLayoutChangeFun = () => {
+	//onBgColorPickerChange('menuBar');
+	//onBgColorPickerChange('menuBarColor');
+	//onBgColorPickerChange('menuBarActiveColor');
+	//onBgColorPickerChange('topBar');
+	//onBgColorPickerChange('topBarColor');
+//};
 // 关闭弹窗时，初始化变量。变量用于处理 layoutScrollbarRef.value.update() 更新滚动条高度
 const onDrawerClose = () => {
 	getThemeConfig.value.isDrawer = false;
@@ -198,18 +200,18 @@ const onResetConfigClick = () => {
 onMounted(() => {
 	nextTick(() => {
 		// 判断当前布局是否不相同，不相同则初始化当前布局的样式，防止监听窗口大小改变时，布局配置logo、菜单背景等部分布局失效问题
-		if (!Local.get('frequency')) initLayoutChangeFun();
-		Local.set('frequency', 1);
+		//if (!Local.get('frequency')) initLayoutChangeFun();
+		//Local.set('frequency', 1);
 		// 监听窗口大小改变，非默认布局，设置成默认布局（适配移动端）
 		mittBus.on('layoutMobileResize', (res: LayoutMobileResize) => {
 			getThemeConfig.value.layout = res.layout;
 			getThemeConfig.value.isDrawer = false;
-			initLayoutChangeFun();
+			//initLayoutChangeFun();
 			state.isMobile = other.isMobile();
 		});
 		setTimeout(() => {
 			// 默认样式
-			onColorPickerChange();
+			//onColorPickerChange();
 		}, 100);
 	});
 });

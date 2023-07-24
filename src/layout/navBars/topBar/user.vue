@@ -17,9 +17,9 @@
 				<ele-Search />
 			</el-icon>
 		</div>
-        <div class="layout-navbars-breadcrumb-user-icon" @click="onLayoutSetingClick">
+        <!--div class="layout-navbars-breadcrumb-user-icon" @click="onLayoutSetingClick">
 			<i class="icon-skin iconfont" title="布局配置"></i>
-		</div>
+		</div-->
 		<div class="layout-navbars-breadcrumb-user-icon" ref="userNewsBadgeRef" v-click-outside="onUserNewsClick">
 			<el-badge :is-dot="true">
 				<el-icon title="消息">
@@ -119,10 +119,7 @@ const onScreenfullClick = () => {
 const onUserNewsClick = () => {
 	unref(userNewsRef).popperRef?.delayHide?.();
 };
-// 布局配置 icon 点击时
-const onLayoutSetingClick = () => {
-	mittBus.emit('openSetingsDrawer');
-};
+
 // 下拉菜单点击时
 const onHandleCommandClick = (path: string) => {
 	if (path === 'logOut') {
@@ -206,13 +203,13 @@ onMounted(() => {
 	&-icon {
 		padding: 0 10px;
 		cursor: pointer;
-		color: var(--next-bg-topBarColor);
+		color: #fff;
 		height: 50px;
 		line-height: 50px;
 		display: flex;
 		align-items: center;
 		&:hover {
-			background: var(--next-color-user-hover);
+			background: rgba(0, 0, 0, 0.04);
 			i {
 				display: inline-block;
 				animation: logoAnimation 0.3s ease-in-out;
@@ -220,7 +217,7 @@ onMounted(() => {
 		}
 	}
 	:deep(.el-dropdown) {
-		color: var(--next-bg-topBarColor);
+		color: #ffff;
 	}
 	:deep(.el-badge) {
 		height: 40px;

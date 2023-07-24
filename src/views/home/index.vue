@@ -88,7 +88,7 @@ const state = reactive({
 			num4: 'fa fa-meetup',
 			color1: '#FF6462',
 			color2: '--next-color-primary-lighter',
-			color3: '--el-color-primary',
+			color3: '#3a84ff',
 		},
 		{
 			num1: '653,33',

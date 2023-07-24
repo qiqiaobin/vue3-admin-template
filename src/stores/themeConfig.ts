@@ -12,39 +12,39 @@ export const useThemeConfig = defineStore('themeConfig', {
 	state: (): ThemeConfigState => ({
 		themeConfig: {
 			// 是否开启布局配置抽屉
-			isDrawer: false,
+			//isDrawer: false,
 
 			/**
 			 * 全局主题
 			 */
 			// 默认 primary 主题颜色
-			primary: '#409eff',
+			//primary: '#3a84ff',
 
 			/**
 			 * 顶栏设置
 			 */
 			// 默认顶栏导航背景颜色
-			topBar: '#ffffff',
+			//topBar: '#182132',
 			// 默认顶栏导航字体颜色
-			topBarColor: '#606266',
+			//topBarColor: '#979ba5',
 
 			/**
 			 * 菜单设置
 			 */
 			// 默认菜单导航背景颜色
-			menuBar: '#ffffff',
+			//menuBar: '#ffffff',
 			// 默认菜单导航字体颜色
-			menuBarColor: '#606266',
+			//menuBarColor: '#606266',
 			// 默认菜单高亮背景色
-			menuBarActiveColor: 'rgba(0, 0, 0, 0.2)',
+			//menuBarActiveColor: '#e1ecff',
 
 			/**
 			 * 分栏设置
 			 */
 			// 默认分栏菜单背景颜色
-			columnsMenuBar: '#ffffff',
+			//columnsMenuBar: '#ffffff',
 			// 默认分栏菜单字体颜色
-			columnsMenuBarColor: '#e6e6e6',
+			//columnsMenuBarColor: '#e6e6e6',
 
 			/**
 			 * 界面设置

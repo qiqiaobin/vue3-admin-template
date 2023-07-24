@@ -36,18 +36,18 @@ declare interface RoutesListState<T = any> {
 // 布局配置
 declare interface ThemeConfigState {
 	themeConfig: {
-		isDrawer: boolean;
-		primary: string;
-		topBar: string;
-		topBarColor: string;
-		menuBar: string;
-		menuBarColor: string;
-		menuBarActiveColor: string;
-		columnsMenuBar: string;
-		columnsMenuBarColor: string;
+		//isDrawer: boolean;
+		//primary: string;
+		//topBar: string;
+		//topBarColor: string;
+		//menuBar: string;
+		//menuBarColor: string;
+		//menuBarActiveColor: string;
+		//columnsMenuBar: string;
+		//columnsMenuBarColor: string;
 		isCollapse: boolean;
-		isBreadcrumb: boolean;
-		isBreadcrumbIcon: boolean;
+		//isBreadcrumb: boolean;
+		//isBreadcrumbIcon: boolean;
 		animation: string;
 		layout: string;
 		isRequestRoutes: boolean;

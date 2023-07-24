@@ -72,7 +72,7 @@ const setCollapseStyle = computed(() => {
             if (isCollapse) {
                 return [asideBrColor, 'layout-aside-pc-64'];
             }else {
-                return [asideBrColor, 'layout-aside-pc-160'];
+                return [asideBrColor, 'layout-aside-pc-220'];
             }
         }
 	}

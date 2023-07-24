@@ -66,23 +66,13 @@
 
 /* NavMenu 导航菜单
 ------------------------------- */
-// 鼠标 hover 时颜色
-.el-menu-hover-bg-color {
-	background-color: var(--next-bg-menuBarActiveColor) !important;
-}
+
 // 默认样式修改
 .el-menu {
 	border-right: none !important;
 	width: 220px;
 }
-.el-menu-item {
-	height: 56px !important;
-	line-height: 56px !important;
-}
-.el-menu-item,
-.el-sub-menu__title {
-	color: var(--next-bg-menuBarColor);
-}
+
 // 修复点击左侧菜单折叠再展开时，宽度不跟随问题
 .el-menu--collapse {
 	width: 64px !important;
@@ -100,17 +90,15 @@
 .el-sub-menu .iconfont,
 .el-menu-item .fa,
 .el-sub-menu .fa {
-	@include generalIcon;
+	font-size: 14px !important;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 5px;
+	width: 24px;
+	text-align: center;
+	justify-content: center;
 }
-// 水平菜单、横向菜单高亮 背景色，鼠标 hover 时，有子级菜单的背景色
-.el-menu-item.is-active,
-.el-sub-menu.is-active .el-sub-menu__title,
-.el-sub-menu:not(.is-opened):hover .el-sub-menu__title {
-	@extend .el-menu-hover-bg-color;
-}
-.el-menu-item:hover {
-	@extend .el-menu-hover-bg-color;
-}
+
 .el-sub-menu.is-active.is-opened .el-sub-menu__title {
 	background-color: unset !important;
 }
@@ -123,71 +111,7 @@
 	color: var(--el-color-white) !important;
 	text-decoration: none;
 }
-// 水平菜单、横向菜单折叠背景色
-.el-popper.is-pure.is-light {
-	// 水平菜单
-	.el-menu--vertical {
-		background: var(--next-bg-menuBar);
-		.el-sub-menu.is-active .el-sub-menu__title {
-			color: var(--el-menu-active-color);
-		}
-		.el-popper.is-pure.is-light {
-			.el-menu--vertical {
-				.el-sub-menu .el-sub-menu__title {
-					background-color: unset !important;
-					color: var(--next-bg-menuBarColor);
-				}
-				.el-sub-menu.is-active .el-sub-menu__title {
-					color: var(--el-menu-active-color);
-				}
-			}
-		}
-	}
-	// 横向菜单
-	.el-menu--horizontal {
-		background: var(--next-bg-topBar);
-		.el-menu-item,
-		.el-sub-menu {
-			height: 48px !important;
-			line-height: 48px !important;
-			color: var(--next-bg-topBarColor);
-			.el-sub-menu__title {
-				height: 48px !important;
-				line-height: 48px !important;
-				color: var(--next-bg-topBarColor);
-			}
-			.el-popper.is-pure.is-light {
-				.el-menu--horizontal {
-					.el-sub-menu .el-sub-menu__title {
-						background-color: unset !important;
-						color: var(--next-bg-topBarColor);
-					}
-					.el-sub-menu.is-active .el-sub-menu__title {
-						color: var(--el-menu-active-color);
-					}
-				}
-			}
-		}
-		.el-menu-item.is-active,
-		.el-sub-menu.is-active .el-sub-menu__title {
-			color: var(--el-menu-active-color);
-		}
-	}
-}
-// 横向菜单（经典、横向）布局
-.el-menu.el-menu--horizontal {
-	border-bottom: none !important;
-	width: 100% !important;
-	.el-menu-item,
-	.el-sub-menu__title {
-		height: 48px !important;
-		color: var(--next-bg-topBarColor);
-	}
-	.el-menu-item:not(.is-active):hover,
-	.el-sub-menu:not(.is-active):hover .el-sub-menu__title {
-		color: var(--next-bg-topBarColor);
-	}
-}
+
 // 菜单收起时，图标不居中问题
 .el-menu--collapse {
 	.el-menu-item .iconfont,
@@ -303,13 +227,6 @@
 ------------------------------- */
 .el-pagination__editor {
 	margin-right: 8px;
-}
-/*深色模式时分页高亮问题*/
-.el-pagination.is-background .btn-next.is-active,
-.el-pagination.is-background .btn-prev.is-active,
-.el-pagination.is-background .el-pager li.is-active {
-	background-color: var(--el-color-primary) !important;
-	color: var(--el-color-white) !important;
 }
 
 /* Drawer 抽屉

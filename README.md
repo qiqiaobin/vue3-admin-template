@@ -1,6 +1,6 @@
 #### 🌈 介绍 
 
-基于 vue-next-admin-template 模板进行精简，只保留了自己需要的经典菜单分栏样式，其余不相关的代码全部删除
+基于 vue-next-admin-template 模板进行精简，只保留了自己需要的经典菜单分栏样式，其余不相关的代码全部删除，仿照腾讯蓝鲸开源项目的UI样式，进行了UI界面美化
 
 #### 🚧 安装 cnpm、yarn
 
@@ -37,6 +37,18 @@ cnpm run dev
 # 打包发布
 cnpm run build
 ```
+
+## 项目预览图
+
+<table>
+  <tr>
+    <td><img src="./docs/imgs/home.png"/></td>
+  </tr>
+  <tr>
+    <td><img src="./docs/imgs/system.png"/></td>
+  </tr>
+</table>
+
 
 
 #### ❤️ 特别鸣谢

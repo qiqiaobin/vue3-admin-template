@@ -10,14 +10,14 @@
 		<template v-for="val in menuLists">
 			<el-sub-menu :index="val.path" v-if="val.children && val.children.length > 0" :key="val.path">
 				<template #title>
-					<SvgIcon :name="val.meta.icon" />
+					<SvgIcon class="menu-icon" :name="val.meta.icon" />
 					<span>{{ val.meta.title }}</span>
 				</template>
 				<SubItem :chil="val.children" />
 			</el-sub-menu>
 			<template v-else>
 				<el-menu-item :index="val.path" :key="val.path">
-					<SvgIcon :name="val.meta.icon" />
+					<SvgIcon class="menu-icon" :name="val.meta.icon" />
 					<template #title v-if="!val.meta.isLink || (val.meta.isLink && val.meta.isIframe)">
 						<span>{{ val.meta.title }}</span>
 					</template>
@@ -97,3 +97,55 @@ watch(
 	}
 );
 </script>
+
+<style lang="scss" scoped>
+// 水平菜单
+.el-menu--vertical {
+	background: #ffffff;
+	.el-sub-menu.is-active .el-sub-menu__title {
+		color: #E1ECFF ;
+	}
+	.el-popper.is-pure.is-light {
+		.el-menu--vertical {
+			.el-sub-menu .el-sub-menu__title {
+				background-color: unset !important;
+				color: #606266;
+			}
+			.el-sub-menu.is-active .el-sub-menu__title {
+				color: #E1ECFF ;
+			}
+		}
+	}
+    // 鼠标 hover 时颜色
+    .el-menu-hover-bg-color {
+    background-color: #E1ECFF !important;
+    }
+    .el-menu-item {
+	height: 42px !important;
+	line-height: 42px !important;
+    }
+    .el-menu-item,
+    .el-sub-menu__title {
+	color: #606266;
+    }
+    .el-menu-item:hover {
+	background-color: #F6F6F9;
+    }
+    .menu-icon {
+        display: inline-block;
+        vertical-align: top;
+        margin: 13px 16px 13px 0px;
+        font-size: 16px;
+        color: #979BA5;
+    }
+
+    
+}
+// 水平菜单、横向菜单高亮 背景色，鼠标 hover 时，有子级菜单的背景色
+.el-menu--vertical {
+    .el-menu-item.is-active {
+	background-color: #E1ECFF !important;
+    color: #3a84ff;
+   }
+}
+</style>
