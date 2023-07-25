@@ -4,14 +4,6 @@ declare type AsideState = {
 	clientWidth: number;
 };
 
-// navBars breadcrumb
-declare type BreadcrumbState<T = any> = {
-	breadcrumbList: T[];
-	routeSplit: string[];
-	routeSplitFirst: string;
-	routeSplitIndex: number;
-};
-
 // navBars search
 declare type SearchState<T = any> = {
 	isShowSearch: boolean;
@@ -23,7 +15,6 @@ declare type SearchState<T = any> = {
 declare type ParentViewState<T = any> = {
 	refreshRouterViewKey: string;
 	iframeRefreshKey: string;
-	keepAliveNameList: string[];
 	iframeList: T[];
 };
 

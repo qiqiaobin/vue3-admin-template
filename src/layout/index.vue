@@ -6,7 +6,6 @@
 import { onBeforeMount, onUnmounted } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useThemeConfig } from '/@/stores/themeConfig';
-import { Local } from '/@/utils/storage';
 import mittBus from '/@/utils/mitt';
 import Classic from '/@/layout/main/classic.vue';
 
@@ -16,17 +15,14 @@ const { themeConfig } = storeToRefs(storesThemeConfig);
 
 // 窗口大小改变时(适配移动端)
 const onLayoutResize = () => {
-	if (!Local.get('oldLayout')) Local.set('oldLayout', themeConfig.value.layout);
 	const clientWidth = document.body.clientWidth;
 	if (clientWidth < 1000) {
 		themeConfig.value.isCollapse = false;
 		mittBus.emit('layoutMobileResize', {
-			layout: 'classic',
 			clientWidth,
 		});
 	} else {
 		mittBus.emit('layoutMobileResize', {
-			layout: Local.get('oldLayout') ? Local.get('oldLayout') : themeConfig.value.layout,
 			clientWidth,
 		});
 	}

@@ -39,8 +39,6 @@ declare type RouteItem<T = any> = {
 		title?: string;
 		isLink?: string;
 		isHide?: boolean;
-		isKeepAlive?: boolean;
-		isAffix?: boolean;
 		isIframe?: boolean;
 		roles?: string[];
 		icon?: string;

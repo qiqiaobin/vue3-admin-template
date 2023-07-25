@@ -3,7 +3,6 @@ import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import pinia from '/@/stores/index';
 import { storeToRefs } from 'pinia';
-import { useKeepALiveNames } from '/@/stores/keepAliveNames';
 import { useRoutesList } from '/@/stores/routesList';
 import { useThemeConfig } from '/@/stores/themeConfig';
 import { Session } from '/@/utils/storage';
@@ -66,7 +65,6 @@ export function formatFlatteningRoutes(arr: any) {
 export function formatTwoStageRoutes(arr: any) {
 	if (arr.length <= 0) return false;
 	const newArr: any = [];
-	const cacheList: Array<string> = [];
 	arr.forEach((v: any) => {
 		if (v.path === '/') {
 			newArr.push({ component: v.component, name: v.name, path: v.path, redirect: v.redirect, meta: v.meta, children: [] });
@@ -78,13 +76,6 @@ export function formatTwoStageRoutes(arr: any) {
 				v.meta['isDynamicPath'] = v.path;
 			}
 			newArr[0].children.push({ ...v });
-			// 存 name 值，keep-alive 中 include 使用，实现路由的缓存
-			// 路径：/@/layout/routerView/parent.vue
-			if (newArr[0].meta.isKeepAlive && v.meta.isKeepAlive) {
-				cacheList.push(v.name);
-				const stores = useKeepALiveNames(pinia);
-				stores.setCacheKeepAlive(cacheList);
-			}
 		}
 	});
 	return newArr;

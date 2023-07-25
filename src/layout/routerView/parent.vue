@@ -30,7 +30,6 @@ const { themeConfig } = storeToRefs(storesThemeConfig);
 const state = reactive<ParentViewState>({
 	refreshRouterViewKey: '', // 非 iframe tagsview 右键菜单刷新时
 	iframeRefreshKey: '', // iframe tagsview 右键菜单刷新时
-	keepAliveNameList: [],
 	iframeList: [],
 });
 

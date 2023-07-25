@@ -18,7 +18,6 @@ const { themeConfig } = storeToRefs(storesThemeConfig);
 
 // logo 点击实现菜单展开/收起
 const onThemeConfigChange = () => {
-	if (themeConfig.value.layout === 'transverse') return false;
 	themeConfig.value.isCollapse = !themeConfig.value.isCollapse;
 };
 </script>

@@ -8,8 +8,6 @@ import { RouteRecordRaw } from 'vue-router';
  *      title:          菜单栏及 tagsView 栏、菜单搜索名称（国际化）
  *      isLink：        是否超链接菜单，开启外链条件，`1、isLink: 链接地址不为空 2、isIframe:false`
  *      isHide：        是否隐藏此路由
- *      isKeepAlive：   是否缓存组件状态
- *      isAffix：       是否固定在 tagsView 栏上
  *      isIframe：      是否内嵌窗口，开启条件，`1、isIframe:true 2、isLink：链接地址不为空`
  *      roles：         当前路由权限标识，取角色管理。控制路由显示、隐藏。超级管理员：admin 普通角色：common
  *      icon：          菜单、tagsView 图标，阿里：加 `iconfont xxx`，fontawesome：加 `fa xxx`
@@ -22,8 +20,6 @@ declare module 'vue-router' {
 		title?: string;
 		isLink?: string;
 		isHide?: boolean;
-		isKeepAlive?: boolean;
-		isAffix?: boolean;
 		isIframe?: boolean;
 		roles?: string[];
 		icon?: string;
@@ -43,9 +39,6 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 		name: '/',
 		component: () => import('/@/layout/index.vue'),
 		redirect: '/home',
-		meta: {
-			isKeepAlive: true,
-		},
 		children: [
 			{
 				path: '/home',
@@ -55,8 +48,6 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 					title: '首页',
 					isLink: '',
 					isHide: false,
-					isKeepAlive: true,
-					isAffix: true,
 					isIframe: false,
 					roles: ['admin', 'common'],
 					icon: 'iconfont icon-shouye',
@@ -71,8 +62,6 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 					title: '系统设置',
 					isLink: '',
 					isHide: false,
-					isKeepAlive: true,
-					isAffix: false,
 					isIframe: false,
 					roles: ['admin'],
 					icon: 'iconfont icon-xitongshezhi',
@@ -86,8 +75,6 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 							title: '菜单管理',
 							isLink: '',
 							isHide: false,
-							isKeepAlive: true,
-							isAffix: false,
 							isIframe: false,
 							roles: ['admin'],
 							icon: 'iconfont icon-caidan',
@@ -101,8 +88,6 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 							title: '角色管理',
 							isLink: '',
 							isHide: false,
-							isKeepAlive: true,
-							isAffix: false,
 							isIframe: false,
 							roles: ['admin'],
 							icon: 'ele-ColdDrink',
@@ -116,8 +101,6 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 							title: '用户管理',
 							isLink: '',
 							isHide: false,
-							isKeepAlive: true,
-							isAffix: false,
 							isIframe: false,
 							roles: ['admin'],
 							icon: 'iconfont icon-icon-',
@@ -131,8 +114,6 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 							title: '部门管理',
 							isLink: '',
 							isHide: false,
-							isKeepAlive: true,
-							isAffix: false,
 							isIframe: false,
 							roles: ['admin'],
 							icon: 'ele-OfficeBuilding',
@@ -146,8 +127,6 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 							title: '字典管理',
 							isLink: '',
 							isHide: false,
-							isKeepAlive: true,
-							isAffix: false,
 							isIframe: false,
 							roles: ['admin'],
 							icon: 'ele-SetUp',

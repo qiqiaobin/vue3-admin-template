@@ -1,16 +1,11 @@
 <template>
 	<div class="h100">
 		<el-aside class="layout-aside" :class="setCollapseStyle">
-			<el-scrollbar class="flex-auto" ref="layoutAsideScrollbarRef" @mouseenter="onAsideEnterLeave(true)" @mouseleave="onAsideEnterLeave(false)">
+			<el-scrollbar class="flex-auto" ref="layoutAsideScrollbarRef">
 				<Vertical :menuList="state.menuList" />
 			</el-scrollbar>
             <div class="nav-option">
-                <SvgIcon
-			    class="nav-stick"
-			    :name="themeConfig.isCollapse ? 'ele-Expand' :'ele-Fold'"
-			    :size="16"
-			    @click="onThemeConfigChange"
-		        />
+                <SvgIcon class="nav-stick" :name="themeConfig.isCollapse ? 'ele-Expand' :'ele-Fold'" :size="16" @click="onThemeConfigChange" />
             </div>
 		</el-aside>
 	</div>
@@ -44,9 +39,8 @@ const onThemeConfigChange = () => {
 
 // 设置菜单展开/收起时的宽度
 const setCollapseStyle = computed(() => {
-	const { isCollapse, menuBar } = themeConfig.value;
-	const asideBrTheme = ['#FFFFFF', '#FFF', '#fff', '#ffffff'];
-	const asideBrColor = asideBrTheme.includes(menuBar) ? 'layout-el-aside-br-color' : '';
+	const { isCollapse } = themeConfig.value;
+	const asideBrColor = 'layout-el-aside-br-color';
 	// 判断是否是手机端
 	if (state.clientWidth <= 1000) {
 		if (isCollapse) {

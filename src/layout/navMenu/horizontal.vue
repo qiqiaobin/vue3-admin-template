@@ -170,6 +170,7 @@ onBeforeRouteUpdate((to) => {
 	.el-menu-item:not(.is-active):hover,
 	.el-sub-menu:not(.is-active):hover .el-sub-menu__title {
 		color: #e1ecff;
+        background: rgba(49, 64, 94, .5)!important;
 	}
     .el-menu-item.is-active,
     .el-sub-menu.is-active .el-sub-menu__title,
