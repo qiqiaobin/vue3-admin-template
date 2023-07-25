@@ -20,6 +20,12 @@ declare interface RequestOldRoutesState {
 	requestOldRoutes: string[];
 }
 
+// TagsView 路由列表
+declare interface TagsViewRoutesState<T = any> {
+	tagsViewRoutes: T[];
+}
+
+
 // 路由列表
 declare interface RoutesListState<T = any> {
 	routesList: T[];

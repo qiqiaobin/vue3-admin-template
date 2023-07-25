@@ -139,10 +139,6 @@ onBeforeRouteUpdate((to) => {
 				}
 			}
 		}
-         // 鼠标 hover 时颜色
-    .el-menu-hover-bg-color {
-    background-color: #ffffff !important;
-    }
     .el-menu-item {
 	height: 56px !important;
 	line-height: 56px !important;

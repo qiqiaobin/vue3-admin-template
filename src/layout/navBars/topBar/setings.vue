@@ -86,8 +86,6 @@ onMounted(() => {
 		mittBus.on('layoutMobileResize', (res: LayoutMobileResize) => {
 			state.isMobile = other.isMobile();
 		});
-		setTimeout(() => {
-		}, 100);
 	});
 });
 onUnmounted(() => {
