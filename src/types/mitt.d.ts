@@ -14,7 +14,6 @@ declare type MittType<T = any> = {
 
 // mitt 参数类型定义
 declare type LayoutMobileResize = {
-	//layout: string;
 	clientWidth: number;
 };
 
