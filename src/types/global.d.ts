@@ -40,7 +40,7 @@ declare type RouteItem<T = any> = {
 		isLink?: string;
 		isHide?: boolean;
 		isIframe?: boolean;
-		roles?: string[];
+		permissions?: string[];
 		icon?: string;
 		isDynamic?: boolean;
 		isDynamicPath?: string;

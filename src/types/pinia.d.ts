@@ -4,9 +4,9 @@
 
 // 用户信息
 declare interface UserInfos<T = any> {
-	authBtnList: string[];
 	photo: string;
 	roles: string[];
+    permissions: string[];
 	time: number;
 	userName: string;
 	[key: string]: T;
@@ -36,7 +36,6 @@ declare interface ThemeConfigState {
 	themeConfig: {
 		isCollapse: boolean;
 		animation: string;
-		isRequestRoutes: boolean;
 		globalTitle: string;
 		globalViceTitle: string;
 		globalViceTitleMsg: string;

@@ -177,8 +177,6 @@ const state = reactive({
 			title: '', // 菜单名称
 			icon: '', // 菜单图标
 			isHide: false, // 是否隐藏
-			//isKeepAlive: true, // 是否缓存
-			//isAffix: false, // 是否固定
 			isLink: '', // 外链/内嵌时链接地址（http:xxx.com），开启外链条件，`1、isLink: 链接地址不为空`
 			isIframe: false, // 是否内嵌，开启条件，`1、isIframe:true 2、isLink：链接地址不为空`
 			roles: '', // 权限标识，取角色管理

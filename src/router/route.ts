@@ -9,7 +9,7 @@ import { RouteRecordRaw } from 'vue-router';
  *      isLink：        是否超链接菜单，开启外链条件，`1、isLink: 链接地址不为空 2、isIframe:false`
  *      isHide：        是否隐藏此路由
  *      isIframe：      是否内嵌窗口，开启条件，`1、isIframe:true 2、isLink：链接地址不为空`
- *      roles：         当前路由权限标识，取角色管理。控制路由显示、隐藏。超级管理员：admin 普通角色：common
+ *      permissions         当前路由权限标识，控制路由权限
  *      icon：          菜单、tagsView 图标，阿里：加 `iconfont xxx`，fontawesome：加 `fa xxx`
  * }
  */
@@ -21,7 +21,7 @@ declare module 'vue-router' {
 		isLink?: string;
 		isHide?: boolean;
 		isIframe?: boolean;
-		roles?: string[];
+        permissions?: string[];
 		icon?: string;
 	}
 }
@@ -49,7 +49,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 					isLink: '',
 					isHide: false,
 					isIframe: false,
-					roles: ['admin', 'common'],
+                    permissions:['/home'],
 					icon: 'iconfont icon-shouye',
 				},
 			},
@@ -63,7 +63,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 					isLink: '',
 					isHide: false,
 					isIframe: false,
-					roles: ['admin'],
+                    permissions:['/system'],
 					icon: 'iconfont icon-xitongshezhi',
 				},
 				children: [
@@ -76,7 +76,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 							isLink: '',
 							isHide: false,
 							isIframe: false,
-							roles: ['admin'],
+                            permissions:['/system/menu'],
 							icon: 'iconfont icon-caidan',
 						},
 					},
@@ -89,7 +89,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 							isLink: '',
 							isHide: false,
 							isIframe: false,
-							roles: ['admin'],
+                            permissions:['/system/role'],
 							icon: 'ele-ColdDrink',
 						},
 					},
@@ -102,7 +102,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 							isLink: '',
 							isHide: false,
 							isIframe: false,
-							roles: ['admin'],
+                            permissions:['/system/user'],
 							icon: 'iconfont icon-icon-',
 						},
 					},
@@ -115,7 +115,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 							isLink: '',
 							isHide: false,
 							isIframe: false,
-							roles: ['admin'],
+                            permissions:['/system/dept'],
 							icon: 'ele-OfficeBuilding',
 						},
 					},
@@ -128,11 +128,37 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 							isLink: '',
 							isHide: false,
 							isIframe: false,
-							roles: ['admin'],
+                            permissions:['/system/dic'],
 							icon: 'ele-SetUp',
 						},
 					},
 				],
+			},
+            {
+				path: '/chart',
+				name: 'chartIndex',
+				component: () => import('/@/views/chart/index.vue'),
+				meta: {
+					title: '大数据图表',
+					isLink: '',
+					isHide: false,
+					isIframe: false,
+                    permissions:['/chart'],
+					icon: 'iconfont icon-ico_shuju',
+				},
+			},
+            {
+				path: '/personal',
+				name: 'personal',
+				component: () => import('/@/views/personal/index.vue'),
+				meta: {
+					title: '个人中心',
+					isLink: '',
+					isHide: false,
+					isIframe: false,
+                    permissions:['/personal'],
+					icon: 'iconfont icon-gerenzhongxin',
+				},
 			},
 		],
 	},

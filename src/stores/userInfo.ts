@@ -13,7 +13,7 @@ export const useUserInfo = defineStore('userInfo', {
 			photo: '',
 			time: 0,
 			roles: [],
-			authBtnList: [],
+            permissions: [],
 		},
 	}),
 	actions: {
@@ -35,22 +35,22 @@ export const useUserInfo = defineStore('userInfo', {
 					const userName = Cookies.get('userName');
 					// 模拟数据
 					let defaultRoles: Array<string> = [];
-					let defaultAuthBtnList: Array<string> = [];
+                    let defaultpermissions: Array<string> = [];
 					// admin 页面权限标识，对应路由 meta.roles，用于控制路由的显示/隐藏
 					let adminRoles: Array<string> = ['admin'];
-					// admin 按钮权限标识
-					let adminAuthBtnList: Array<string> = ['btn.add', 'btn.del', 'btn.edit', 'btn.link'];
+					// admin 权限标识
+                    let adminPermissions: Array<string> = ['/home','/chart','/personal','/system','/system/menu','/system/role','/system/user','/system/role/add','/system/menu/add'];
 					// test 页面权限标识，对应路由 meta.roles，用于控制路由的显示/隐藏
 					let testRoles: Array<string> = ['common'];
-					// test 按钮权限标识
-					let testAuthBtnList: Array<string> = ['btn.add', 'btn.link'];
+					// test 权限标识
+                    let testPermissions: Array<string> = ['/home','/personal','/system','/system/menu','/system/role','/system/user'];
 					// 不同用户模拟不同的用户权限
 					if (userName === 'admin') {
 						defaultRoles = adminRoles;
-						defaultAuthBtnList = adminAuthBtnList;
+                        defaultpermissions = adminPermissions;
 					} else {
 						defaultRoles = testRoles;
-						defaultAuthBtnList = testAuthBtnList;
+                        defaultpermissions = testPermissions;
 					}
 					// 用户信息模拟数据
 					const userInfos = {
@@ -61,7 +61,7 @@ export const useUserInfo = defineStore('userInfo', {
 								: 'https://img2.baidu.com/it/u=2370931438,70387529&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
 						time: new Date().getTime(),
 						roles: defaultRoles,
-						authBtnList: defaultAuthBtnList,
+                        permissions: defaultpermissions ,
 					};
 					Session.set('userInfo', userInfos);
 					resolve(userInfos);

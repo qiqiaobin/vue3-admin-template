@@ -85,10 +85,10 @@ export function setFilterRoute(chil: any) {
 	const { userInfos } = storeToRefs(stores);
 	let filterRoute: any = [];
 	chil.forEach((route: any) => {
-		if (route.meta.roles) {
-			route.meta.roles.forEach((metaRoles: any) => {
-				userInfos.value.roles.forEach((roles: any) => {
-					if (metaRoles === roles) filterRoute.push({ ...route });
+		if (route.meta.permissions) {
+			route.meta.permissions.forEach((metaPermissions: any) => {
+				userInfos.value.permissions.forEach((permissions: any) => {
+					if (metaPermissions === permissions) filterRoute.push({ ...route });
 				});
 			});
 		}
@@ -105,7 +105,7 @@ export function setCacheTagsViewRoutes() {
 	const stores = useUserInfo(pinia);
 	const storesTagsView = useTagsViewRoutes(pinia);
 	const { userInfos } = storeToRefs(stores);
-	let rolesRoutes = setFilterHasRolesMenu(dynamicRoutes, userInfos.value.roles);
+	let rolesRoutes = setFilterHasRolesMenu(dynamicRoutes, userInfos.value.permissions);
 	// 添加到 pinia setTagsViewRoutes 中
 	storesTagsView.setTagsViewRoutes(formatTwoStageRoutes(formatFlatteningRoutes(rolesRoutes))[0].children);
 }
@@ -119,20 +119,22 @@ export function setFilterMenuAndCacheTagsViewRoutes() {
 	const stores = useUserInfo(pinia);
 	const storesRoutesList = useRoutesList(pinia);
 	const { userInfos } = storeToRefs(stores);
-	storesRoutesList.setRoutesList(setFilterHasRolesMenu(dynamicRoutes[0].children, userInfos.value.roles));
+	storesRoutesList.setRoutesList(setFilterHasRolesMenu(dynamicRoutes[0].children, userInfos.value.permissions));
 	setCacheTagsViewRoutes();
 }
 
 /**
- * 判断路由 `meta.roles` 中是否包含当前登录用户权限字段
- * @param roles 用户权限标识，在 userInfos（用户信息）的 roles（登录页登录时缓存到浏览器）数组
+ * 判断路由 `meta.permissions` 中是否包含当前登录用户权限字段
+ * @param permissions 用户权限标识，在 userInfos（用户信息）的 roles（登录页登录时缓存到浏览器）数组
  * @param route 当前循环时的路由项
  * @returns 返回对比后有权限的路由项
  */
-export function hasRoles(roles: any, route: any) {
-	if (route.meta && route.meta.roles) return roles.some((role: any) => route.meta.roles.includes(role));
+export function hasPermissions(permissions: any, route: any) {
+	if (route.meta && route.meta.permissions) return permissions.some((permission: any) => route.meta.permissions.includes(permission));
 	else return true;
 }
+
+
 
 /**
  * 获取当前用户权限标识去比对路由表，设置递归过滤有权限的路由
@@ -140,12 +142,12 @@ export function hasRoles(roles: any, route: any) {
  * @param roles 用户权限标识，在 userInfos（用户信息）的 roles（登录页登录时缓存到浏览器）数组
  * @returns 返回有权限的路由数组 `meta.roles` 中控制
  */
-export function setFilterHasRolesMenu(routes: any, roles: any) {
+export function setFilterHasRolesMenu(routes: any, permissions: any) {
 	const menu: any = [];
 	routes.forEach((route: any) => {
 		const item = { ...route };
-		if (hasRoles(roles, item)) {
-			if (item.children) item.children = setFilterHasRolesMenu(item.children, roles);
+		if (hasPermissions(permissions, item)) {
+			if (item.children) item.children = setFilterHasRolesMenu(item.children, permissions);
 			menu.push(item);
 		}
 	});
