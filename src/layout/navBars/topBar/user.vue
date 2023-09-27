@@ -199,7 +199,7 @@ onMounted(() => {
 	&-icon {
 		padding: 0 10px;
 		cursor: pointer;
-		color: #fff;
+		color: #ffffff;
 		height: 50px;
 		line-height: 50px;
 		display: flex;
@@ -213,7 +213,7 @@ onMounted(() => {
 		}
 	}
 	:deep(.el-dropdown) {
-		color: #ffff;
+		color: #ffffff;
 	}
 	:deep(.el-badge) {
 		height: 40px;

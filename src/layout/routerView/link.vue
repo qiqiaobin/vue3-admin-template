@@ -84,7 +84,7 @@ watch(
 		}
 		.layout-link-msg {
 			font-size: 12px;
-			color: #182132;
+			color: #ffffff;
 			opacity: 0.7;
 			margin-top: 15px;
 		}

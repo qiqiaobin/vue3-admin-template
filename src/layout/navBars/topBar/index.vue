@@ -31,7 +31,6 @@ const setFilterRoutes = () => {
 	state.menuList = delClassicChildren(filterRoutesFun(routesList.value));
 	const resData = setSendClassicChildren(route.path);
 	mittBus.emit('setSendClassicChildren', resData);
-
 };
 // 设置了分割菜单时，删除底下 children
 const delClassicChildren = <T extends ChilType>(arr: T[]): T[] => {
@@ -83,6 +82,7 @@ onUnmounted(() => {
 	display: flex;
 	align-items: center;
 	background: #182132;
-	border-bottom: none !important;
+	//border-bottom: none !important;
+  border-bottom: 1px solid #f1f2f3;
 }
 </style>

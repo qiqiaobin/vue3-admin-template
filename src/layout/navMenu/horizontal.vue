@@ -120,34 +120,42 @@ onBeforeRouteUpdate((to) => {
 // 横向菜单
 .el-menu--horizontal {
 	background: #182132;
-    .el-sub-menu {
+  .el-menu-item,  
+  .el-sub-menu {
 		height: 48px !important;
 		line-height: 48px !important;
-        font-size: 14px;
-		color: #182132;
+    font-size: 14px;
+		color: #ffffff;
 		.el-sub-menu__title {
 			height: 48px !important;
 			line-height: 48px !important;
-			color: #182132;
-            font-size: 14px;
+			color: #ffffff;
+      font-size: 14px;
 		}
 		.el-popper.is-pure.is-light {
 			.el-menu--horizontal {
 				.el-sub-menu .el-sub-menu__title {
 					background-color: #96a2b9;
-					color: #96a2b9;
+					color: #ffffff;
+				}
+        .el-sub-menu.is-active .el-sub-menu__title {
+					color: #e1ecff;
 				}
 			}
 		}
+    .el-menu-item.is-active,
+		.el-sub-menu.is-active .el-sub-menu__title {
+			color: #e1ecff;
+		}
     .el-menu-item {
-	height: 56px !important;
-	line-height: 56px !important;
+	    height: 56px !important;
+	    line-height: 56px !important;
     }
     .el-sub-menu__title {
-	color: #96a2b9;
+	    color: #96a2b9;
     }
     .el-menu-item:hover {
-	background-color: #F6F6F9;
+	    background-color: #F6F6F9;
     }
 	}
 }
@@ -158,22 +166,23 @@ onBeforeRouteUpdate((to) => {
 	width: 100% !important;
 	.el-menu-item,
 	.el-sub-menu__title {
-        border-bottom: none !important;
+    border-bottom: none !important;
 		height: 48px !important;
 		color: #979ba5;
-        font-size: 14px;
+    font-size: 14px;
+    background: #182132;
 	}
 	.el-menu-item:not(.is-active):hover,
 	.el-sub-menu:not(.is-active):hover .el-sub-menu__title {
 		color: #e1ecff;
-        background: rgba(49, 64, 94, .5)!important;
+    background: #31405e;
 	}
-    .el-menu-item.is-active,
-    .el-sub-menu.is-active .el-sub-menu__title,
-    .el-sub-menu:not(.is-opened):hover .el-sub-menu__title {
+  .el-menu-item.is-active,
+  .el-sub-menu.is-active .el-sub-menu__title,
+  .el-sub-menu:not(.is-opened):hover .el-sub-menu__title {
     background: #31405e !important;
     color: #ffffff !important;
     border-bottom: none !important;
-   }
+  }
 }
 </style>

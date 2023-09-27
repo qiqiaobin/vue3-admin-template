@@ -14,6 +14,9 @@ import { RouteRecordRaw } from 'vue-router';
  * }
  */
 
+
+
+
 // 扩展 RouteMeta 接口
 declare module 'vue-router' {
 	interface RouteMeta {
@@ -21,7 +24,7 @@ declare module 'vue-router' {
 		isLink?: string;
 		isHide?: boolean;
 		isIframe?: boolean;
-        permissions?: string[];
+    permissions?: string[];
 		icon?: string;
 	}
 }
@@ -49,7 +52,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 					isLink: '',
 					isHide: false,
 					isIframe: false,
-                    permissions:['/home'],
+          permissions:['/home'],
 					icon: 'iconfont icon-shouye',
 				},
 			},
@@ -63,7 +66,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 					isLink: '',
 					isHide: false,
 					isIframe: false,
-                    permissions:['/system'],
+          permissions:['/system'],
 					icon: 'iconfont icon-xitongshezhi',
 				},
 				children: [
@@ -76,7 +79,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 							isLink: '',
 							isHide: false,
 							isIframe: false,
-                            permissions:['/system/menu'],
+              permissions:['/system/menu'],
 							icon: 'iconfont icon-caidan',
 						},
 					},
@@ -89,7 +92,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 							isLink: '',
 							isHide: false,
 							isIframe: false,
-                            permissions:['/system/role'],
+              permissions:['/system/role'],
 							icon: 'ele-ColdDrink',
 						},
 					},
@@ -102,7 +105,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 							isLink: '',
 							isHide: false,
 							isIframe: false,
-                            permissions:['/system/user'],
+              permissions:['/system/user'],
 							icon: 'iconfont icon-icon-',
 						},
 					},
@@ -115,7 +118,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 							isLink: '',
 							isHide: false,
 							isIframe: false,
-                            permissions:['/system/dept'],
+              permissions:['/system/dept'],
 							icon: 'ele-OfficeBuilding',
 						},
 					},
@@ -128,13 +131,13 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 							isLink: '',
 							isHide: false,
 							isIframe: false,
-                            permissions:['/system/dic'],
+              permissions:['/system/dic'],
 							icon: 'ele-SetUp',
 						},
 					},
 				],
 			},
-            {
+      {
 				path: '/chart',
 				name: 'chartIndex',
 				component: () => import('/@/views/chart/index.vue'),
@@ -143,11 +146,11 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 					isLink: '',
 					isHide: false,
 					isIframe: false,
-                    permissions:['/chart'],
+          permissions:['/chart'],
 					icon: 'iconfont icon-ico_shuju',
 				},
 			},
-            {
+      {
 				path: '/personal',
 				name: 'personal',
 				component: () => import('/@/views/personal/index.vue'),
@@ -156,7 +159,20 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 					isLink: '',
 					isHide: false,
 					isIframe: false,
-                    permissions:['/personal'],
+          permissions:['/personal'],
+					icon: 'iconfont icon-gerenzhongxin',
+				},
+			},
+            {
+				path: '/tree',
+				name: 'tree',
+				component: () => import('/@/views/tree/index.vue'),
+				meta: {
+					title: '树',
+					isLink: '',
+					isHide: false,
+					isIframe: false,
+          permissions:['/tree'],
 					icon: 'iconfont icon-gerenzhongxin',
 				},
 			},

@@ -12,61 +12,43 @@ export const useUserInfo = defineStore('userInfo', {
 			userName: '',
 			photo: '',
 			time: 0,
-			roles: [],
-            permissions: [],
+      permissions: [],
 		},
 	}),
 	actions: {
 		async setUserInfos() {
-			// 存储用户信息到浏览器缓存
-			if (Session.get('userInfo')) {
-				this.userInfos = Session.get('userInfo');
-			} else {
-				const userInfos = <UserInfos>await this.getApiUserInfo();
-				this.userInfos = userInfos;
-			}
-		},
-		// 模拟接口数据
-		// https://gitee.com/lyt-top/vue-next-admin/issues/I5F1HP
-		async getApiUserInfo() {
-			return new Promise((resolve) => {
-				setTimeout(() => {
-					// 模拟数据，请求接口时，记得删除多余代码及对应依赖的引入
+      // 模拟数据，请求接口时，记得删除多余代码及对应依赖的引入
 					const userName = Cookies.get('userName');
 					// 模拟数据
-					let defaultRoles: Array<string> = [];
-                    let defaultpermissions: Array<string> = [];
-					// admin 页面权限标识，对应路由 meta.roles，用于控制路由的显示/隐藏
-					let adminRoles: Array<string> = ['admin'];
+          let defaultpermissions: Array<string> = [];
 					// admin 权限标识
-                    let adminPermissions: Array<string> = ['/home','/chart','/personal','/system','/system/menu','/system/role','/system/user','/system/role/add','/system/menu/add'];
-					// test 页面权限标识，对应路由 meta.roles，用于控制路由的显示/隐藏
-					let testRoles: Array<string> = ['common'];
+          let adminPermissions: Array<string> = ['/home','/chart','/personal','/tree','/system','/system/menu','/system/role','/system/user','/system/role/add','/system/menu/add'];
 					// test 权限标识
-                    let testPermissions: Array<string> = ['/home','/personal','/system','/system/menu','/system/role','/system/user'];
+          let testPermissions: Array<string> = ['/home','/personal','/system','/system/menu','/system/role','/system/user'];
 					// 不同用户模拟不同的用户权限
 					if (userName === 'admin') {
-						defaultRoles = adminRoles;
-                        defaultpermissions = adminPermissions;
+            defaultpermissions = adminPermissions;
 					} else {
-						defaultRoles = testRoles;
-                        defaultpermissions = testPermissions;
+            defaultpermissions = testPermissions;
 					}
 					// 用户信息模拟数据
 					const userInfos = {
 						userName: userName,
 						photo:
-							userName === 'admin'
-								? 'https://img2.baidu.com/it/u=1978192862,2048448374&fm=253&fmt=auto&app=138&f=JPEG?w=504&h=500'
-								: 'https://img2.baidu.com/it/u=2370931438,70387529&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+						userName === 'admin'
+							? 'https://img2.baidu.com/it/u=1978192862,2048448374&fm=253&fmt=auto&app=138&f=JPEG?w=504&h=500'
+							: 'https://img2.baidu.com/it/u=2370931438,70387529&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
 						time: new Date().getTime(),
-						roles: defaultRoles,
-                        permissions: defaultpermissions ,
+            permissions: defaultpermissions ,
 					};
 					Session.set('userInfo', userInfos);
-					resolve(userInfos);
-				}, 0);
-			});
+
+			// 存储用户信息到浏览器缓存
+			if (Session.get('userInfo')) {
+				this.userInfos = Session.get('userInfo');
+			} else {
+				this.userInfos = userInfos;
+			}
 		},
 	},
 });

@@ -29,8 +29,9 @@ declare interface Window {
 	nextLoading: boolean;
 }
 
+
 // 声明路由当前项类型
-declare type RouteItem<T = any> = {
+interface RouteItem  {
 	path: string;
 	name?: string | symbol | undefined | null;
 	redirect?: string;

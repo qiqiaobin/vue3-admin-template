@@ -5,8 +5,7 @@
 // 用户信息
 declare interface UserInfos<T = any> {
 	photo: string;
-	roles: string[];
-    permissions: string[];
+  permissions: string[];
 	time: number;
 	userName: string;
 	[key: string]: T;

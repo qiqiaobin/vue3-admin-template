@@ -7,6 +7,7 @@ import { useRoutesList } from '/@/stores/routesList';
 import { Session } from '/@/utils/storage';
 import { staticRoutes, notFoundAndNoPower } from '/@/router/route';
 import { initFrontEndControlRoutes } from '/@/router/frontEnd';
+import { buildHierarchyTree } from "/@/utils/tree";
 
 /**
  * 1、前端控制路由时：isRequestRoutes 为 false，需要写 roles，需要走 setFilterRoute 方法。
@@ -33,32 +34,40 @@ export const router = createRouter({
 
 /**
  * 路由多级嵌套数组处理成一维数组
- * @param arr 传入路由菜单数据数组
+ * @param routesList 传入路由菜单数据数组
  * @returns 返回处理后的一维路由菜单数组
  */
-export function formatFlatteningRoutes(arr: any) {
-	if (arr.length <= 0) return false;
-	for (let i = 0; i < arr.length; i++) {
-		if (arr[i].children) {
-			arr = arr.slice(0, i + 1).concat(arr[i].children, arr.slice(i + 1));
+export function formatFlatteningRoutes(routesList: any) {
+	if (routesList.length <= 0) return routesList;
+  let hierarchyList = buildHierarchyTree(routesList);
+	for (let i = 0; i < hierarchyList.length; i++) {
+		if (hierarchyList[i].children) {
+			hierarchyList = hierarchyList.slice(0, i + 1).concat(hierarchyList[i].children, hierarchyList.slice(i + 1));
 		}
 	}
-	return arr;
+	return hierarchyList;
 }
 
 /**
  * 一维数组处理成多级嵌套数组（只保留二级：也就是二级以上全部处理成只有二级，keep-alive 支持二级缓存）
  * @description isKeepAlive 处理 `name` 值，进行缓存。顶级关闭，全部不缓存
  * @link 参考：https://v3.cn.vuejs.org/api/built-in-components.html#keep-alive
- * @param arr 处理后的一维路由菜单数组
+ * @param routesList 处理后的一维路由菜单数组
  * @returns 返回将一维数组重新处理成 `定义动态路由（dynamicRoutes）` 的格式
  */
-export function formatTwoStageRoutes(arr: any) {
-	if (arr.length <= 0) return false;
-	const newArr: any = [];
-	arr.forEach((v: any) => {
+export function formatTwoStageRoutes(routesList: any) {
+	if (routesList.length <= 0) return routesList;
+	const newRoutesList: any = [];
+	routesList.forEach((v: any) => {
 		if (v.path === '/') {
-			newArr.push({ component: v.component, name: v.name, path: v.path, redirect: v.redirect, meta: v.meta, children: [] });
+			newRoutesList.push({ 
+                component: v.component, 
+                name: v.name, 
+                path: v.path, 
+                redirect: v.redirect, 
+                meta: v.meta, 
+                children: [] 
+            });
 		} else {
 			// 判断是否是动态路由（xx/:id/:name），用于 tagsView 等中使用
 			// 修复：https://gitee.com/lyt-top/vue-next-admin/issues/I3YX6G
@@ -66,10 +75,10 @@ export function formatTwoStageRoutes(arr: any) {
 				v.meta['isDynamic'] = true;
 				v.meta['isDynamicPath'] = v.path;
 			}
-			newArr[0].children.push({ ...v });
+			newRoutesList[0]?.children.push({ ...v });
 		}
 	});
-	return newArr;
+	return newRoutesList;
 }
 
 // 路由加载前
