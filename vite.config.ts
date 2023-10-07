@@ -5,12 +5,10 @@ import vueSetupExtend from 'vite-plugin-vue-setup-extend-plus';
 import viteCompression from 'vite-plugin-compression';
 import { buildConfig } from './src/utils/build';
 
-/** 路径查找 */
 const pathResolve = (dir: string) => {
 	return resolve(__dirname, '.', dir);
 };
 
-/** 设置别名 */
 const alias: Record<string, string> = {
 	'/@': pathResolve('./src/'),
 };
@@ -22,15 +20,9 @@ const viteConfig = defineConfig((mode: ConfigEnv) => {
 		root: process.cwd(),
 		resolve: { alias },
 		base: mode.command === 'serve' ? './' : env.VITE_PUBLIC_PATH,
-		optimizeDeps: {
-			exclude: ['vue-demi'],
-		},
-        // 服务端渲染
+		optimizeDeps: { exclude: ['vue-demi'] },
 		server: {
-            // 是否开启 https
-            https: false,
 			host: '0.0.0.0',
-            // 端口号
 			port: env.VITE_PORT as unknown as number,
 			open: JSON.parse(env.VITE_OPEN),
 			hmr: true,
@@ -45,10 +37,8 @@ const viteConfig = defineConfig((mode: ConfigEnv) => {
 		},
 		build: {
 			outDir: 'dist',
-			// 消除打包大小超过500kb警告
-            chunkSizeWarningLimit: 4000,
+			chunkSizeWarningLimit: 1500,
 			rollupOptions: {
-                // 静态资源分类打包
 				output: {
 					chunkFileNames: 'assets/js/[name]-[hash].js',
 					entryFileNames: 'assets/js/[name]-[hash].js',
@@ -64,6 +54,7 @@ const viteConfig = defineConfig((mode: ConfigEnv) => {
 		},
 		css: { preprocessorOptions: { css: { charset: false } } },
 		define: {
+			__INTLIFY_PROD_DEVTOOLS__: JSON.stringify(false),
 			__NEXT_VERSION__: JSON.stringify(process.env.npm_package_version),
 			__NEXT_NAME__: JSON.stringify(process.env.npm_package_name),
 		},

@@ -124,6 +124,17 @@ export function setFilterMenuAndCacheTagsViewRoutes() {
 }
 
 /**
+ * 判断路由 `meta.roles` 中是否包含当前登录用户权限字段
+ * @param roles 用户权限标识，在 userInfos（用户信息）的 roles（登录页登录时缓存到浏览器）数组
+ * @param route 当前循环时的路由项
+ * @returns 返回对比后有权限的路由项
+ */
+export function hasRoles(roles: any, route: any) {
+	if (route.meta && route.meta.roles) return roles.some((role: any) => route.meta.roles.includes(role));
+	else return true;
+}
+
+/**
  * 判断路由 `meta.permissions` 中是否包含当前登录用户权限字段
  * @param permissions 用户权限标识，在 userInfos（用户信息）的 roles（登录页登录时缓存到浏览器）数组
  * @param route 当前循环时的路由项
@@ -133,7 +144,6 @@ export function hasPermissions(permissions: any, route: any) {
 	if (route.meta && route.meta.permissions) return permissions.some((permission: any) => route.meta.permissions.includes(permission));
 	else return true;
 }
-
 
 
 /**

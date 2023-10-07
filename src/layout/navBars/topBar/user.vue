@@ -52,9 +52,10 @@
 				</el-icon>
 			</span>
 			<template #dropdown>
-				<el-dropdown-menu
-					><el-dropdown-item command="/home">首页</el-dropdown-item>
+				<el-dropdown-menu>
+					<el-dropdown-item command="/home">首页</el-dropdown-item>
 					<el-dropdown-item command="wareHouse">代码仓库</el-dropdown-item>
+					<el-dropdown-item command="/personal">个人中心</el-dropdown-item>
 					<el-dropdown-item command="/404">404</el-dropdown-item>
 					<el-dropdown-item command="/401">401</el-dropdown-item>
 					<el-dropdown-item divided command="logOut">退出登录</el-dropdown-item>
@@ -96,7 +97,7 @@ const state = reactive({
 // 设置分割样式
 const layoutUserFlexNum = computed(() => {
 	let num: string | number = '';
-    num = '1';
+  num = '';
 	return num;
 });
 // 全屏点击时
@@ -168,6 +169,7 @@ const onComponentSizeChange = (size: string) => {
 	initI18nOrSize('globalComponentSize', 'disabledSize');
 	window.location.reload();
 };
+
 // 初始化组件大小/i18n
 const initI18nOrSize = (value: string, attr: string) => {
 	(<any>state)[attr] = Local.get('themeConfig')[value];
@@ -205,7 +207,7 @@ onMounted(() => {
 		display: flex;
 		align-items: center;
 		&:hover {
-			background: rgba(0, 0, 0, 0.04);
+			background: var(--next-color-user-hover);
 			i {
 				display: inline-block;
 				animation: logoAnimation 0.3s ease-in-out;

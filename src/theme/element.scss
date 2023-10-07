@@ -66,7 +66,10 @@
 
 /* NavMenu 导航菜单
 ------------------------------- */
-
+// 鼠标 hover 时颜色
+.el-menu-hover-bg-color {
+	background-color: var(--next-bg-menuBarActiveColor) !important;
+}
 // 默认样式修改
 .el-menu {
 	border-right: none !important;
@@ -90,26 +93,19 @@
 .el-sub-menu .iconfont,
 .el-menu-item .fa,
 .el-sub-menu .fa {
-	font-size: 14px !important;
-	display: inline-block;
-	vertical-align: middle;
-	margin-right: 5px;
-	width: 24px;
-	text-align: center;
-	justify-content: center;
+	@include generalIcon;
 }
-
+// 水平菜单、横向菜单高亮 背景色，鼠标 hover 时，有子级菜单的背景色
+.el-menu-item.is-active,
+.el-sub-menu.is-active .el-sub-menu__title,
+.el-sub-menu:not(.is-opened):hover .el-sub-menu__title {
+	@extend .el-menu-hover-bg-color;
+}
+.el-menu-item:hover {
+	@extend .el-menu-hover-bg-color;
+}
 .el-sub-menu.is-active.is-opened .el-sub-menu__title {
 	background-color: unset !important;
-}
-// 子级菜单背景颜色
-// .el-menu--inline {
-// 	background: var(--next-bg-menuBar-light-1);
-// }
-// 水平菜单、横向菜单折叠 a 标签
-.el-popper.is-dark a {
-	color: var(--el-color-white) !important;
-	text-decoration: none;
 }
 
 // 菜单收起时，图标不居中问题
@@ -228,6 +224,13 @@
 .el-pagination__editor {
 	margin-right: 8px;
 }
+/*深色模式时分页高亮问题*/
+.el-pagination.is-background .btn-next.is-active,
+.el-pagination.is-background .btn-prev.is-active,
+.el-pagination.is-background .el-pager li.is-active {
+	background-color: var(--el-color-primary) !important;
+	color: var(--el-color-white) !important;
+}
 
 /* Drawer 抽屉
 ------------------------------- */
@@ -240,7 +243,7 @@
 		align-items: center;
 		margin-bottom: 0 !important;
 		border-bottom: 1px solid var(--el-border-color);
-		color: #ffffff;
+		color: var(--el-text-color-primary);
 	}
 	.el-drawer__body {
 		width: 100%;

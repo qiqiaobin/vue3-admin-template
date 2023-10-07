@@ -27,11 +27,12 @@ declare module '*.vue' {
 /* eslint-disable */
 declare interface Window {
 	nextLoading: boolean;
+	BMAP_SATELLITE_MAP: any;
+	BMap: any;
 }
 
-
 // 声明路由当前项类型
-interface RouteItem  {
+declare type RouteItem<T = any> = {
 	path: string;
 	name?: string | symbol | undefined | null;
 	redirect?: string;
@@ -40,8 +41,10 @@ interface RouteItem  {
 		title?: string;
 		isLink?: string;
 		isHide?: boolean;
+		isKeepAlive?: boolean;
+		isAffix?: boolean;
 		isIframe?: boolean;
-		permissions?: string[];
+		roles?: string[];
 		icon?: string;
 		isDynamic?: boolean;
 		isDynamicPath?: string;

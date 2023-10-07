@@ -22,9 +22,6 @@
 	--next-color-seting-main: #e9eef3;
 	--next-color-seting-aside: #d3dce6;
 	--next-color-seting-header: #b3c0d1;
-  --el-text-color-primary: #979ba5;
-  --el-menu-active-color:#ffffff;
-  --el-menu-hover-text-color:#ffffff;
 }
 
 html,
@@ -199,7 +196,7 @@ body,
 ------------------------------- */
 #nprogress {
 	.bar {
-		background: #3a84ff !important;
+		background: var(--el-color-primary) !important;
 		z-index: 9999999 !important;
 	}
 }
@@ -276,7 +273,7 @@ body,
 /* 颜色值
 ------------------------------- */
 .color-primary {
-	color: #3a84ff;
+	color: var(--el-color-primary);
 }
 .color-success {
 	color: var(--el-color-success);

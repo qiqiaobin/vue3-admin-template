@@ -1,18 +1,18 @@
 <template>
-	<div class="h100">
+	<div class="h100" >
 		<el-aside class="layout-aside" :class="setCollapseStyle">
-			<el-scrollbar class="flex-auto" ref="layoutAsideScrollbarRef">
+			<el-scrollbar class="flex-auto" >
 				<Vertical :menuList="state.menuList" />
 			</el-scrollbar>
-            <div class="nav-option">
-                <SvgIcon class="nav-stick" :name="themeConfig.isCollapse ? 'ele-Expand' :'ele-Fold'" :size="16" @click="onThemeConfigChange" />
-            </div>
+      <div class="nav-option">
+        <SvgIcon class="nav-stick" :name="themeConfig.isCollapse ? 'ele-Expand' :'ele-Fold'" :size="16" @click="onThemeConfigChange" />
+      </div>
 		</el-aside>
 	</div>
 </template>
 
 <script setup lang="ts" name="layoutAside">
-import { defineAsyncComponent, reactive, computed, watch, onBeforeMount, ref } from 'vue';
+import { defineAsyncComponent, reactive, computed, watch, onBeforeMount } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useRoutesList } from '/@/stores/routesList';
 import { useThemeConfig } from '/@/stores/themeConfig';
@@ -22,7 +22,6 @@ import mittBus from '/@/utils/mitt';
 const Vertical = defineAsyncComponent(() => import('/@/layout/navMenu/vertical.vue'));
 
 // 定义变量内容
-const layoutAsideScrollbarRef = ref();
 const stores = useRoutesList();
 const storesThemeConfig = useThemeConfig();
 const { routesList } = storeToRefs(stores);
@@ -57,20 +56,17 @@ const setCollapseStyle = computed(() => {
 			return [asideBrColor, 'layout-aside-mobile', 'layout-aside-mobile-close'];
 		}
 	} else {
-        //经典布局分割菜单只有一项子级时，菜单收起时宽度给 1px，防止切换动画消失
-        if (state.menuList.length <= 1)
-        {
-            return [asideBrColor, 'layout-aside-pc-1'];
-        } else{
-            // 其它布局给 64px，显示图标
-            if (isCollapse) {
-                return [asideBrColor, 'layout-aside-pc-64'];
-            }else {
-                return [asideBrColor, 'layout-aside-pc-220'];
-            }
-        }
+		//经典布局分割菜单只有一项子级时，菜单收起时宽度给 1px，防止切换动画消失
+    if (isCollapse)
+    {
+      return [asideBrColor, 'layout-aside-pc-1'];
+    } else{
+      // 其它布局给 64px，显示图标
+      return [asideBrColor, 'layout-aside-pc-220'];
+    }
 	}
 });
+
 // 关闭移动端蒙版
 const closeLayoutAsideMobileMode = () => {
 	const el = document.querySelector('.layout-aside-mobile-mode');
@@ -89,24 +85,25 @@ const setFilterRoutes = () => {
 // 路由过滤递归函数
 const filterRoutesFun = <T extends RouteItem>(arr: T[]): T[] => {
 	return arr
-	.filter((item: T) => !item.meta?.isHide)
+		.filter((item: T) => !item.meta?.isHide)
 		.map((item: T) => {
 			item = Object.assign({}, item);
 			if (item.children) item.children = filterRoutesFun(item.children);
 			return item;
-	});
+		});
 };
 // 设置菜单导航是否固定（移动端）
 const initMenuFixed = (clientWidth: number) => {
 	state.clientWidth = clientWidth;
 };
+
 // 页面加载前
 onBeforeMount(() => {
 	initMenuFixed(document.body.clientWidth);
 	setFilterRoutes();
 	// 开启经典布局分割菜单时，设置菜单数据
 	mittBus.on('setSendClassicChildren', (res: MittMenu) => {
-		// 经典布局分割菜单只有一项子级时，收起左侧导航菜单
+		// 经典布局分割菜单只要一项子级时，收起左侧导航菜单
 		res.children.length <= 1 ? (themeConfig.value.isCollapse = true) : (themeConfig.value.isCollapse = false);
 		state.menuList = [];
 		state.menuList = res.children;

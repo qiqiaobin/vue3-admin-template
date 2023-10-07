@@ -66,18 +66,18 @@ const onColClick = (v: unknown | string) => {
 		}
 		&:hover {
 			cursor: pointer;
-			background-color: #ebf2ff;
-			border: 1px solid #9cc1ff;
+			background-color: var(--el-color-primary-light-9);
+			border: 1px solid var(--el-color-primary-light-5);
 			i {
-				color: #3a84ff;
+				color: var(--el-color-primary);
 			}
 		}
 	}
 	.icon-selector-active {
-		background-color: #ebf2ff;
-		border: 1px solid #9cc1ff;
+		background-color: var(--el-color-primary-light-9);
+		border: 1px solid var(--el-color-primary-light-5);
 		i {
-			color: #3a84ff;
+			color: var(--el-color-primary);
 		}
 	}
 }

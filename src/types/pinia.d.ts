@@ -14,6 +14,12 @@ declare interface UserInfosState {
 	userInfos: UserInfos;
 }
 
+// 路由缓存列表
+declare interface KeepAliveNamesState {
+	keepAliveNames: string[];
+	cachedViews: string[];
+}
+
 // 后端返回原始路由(未处理时)
 declare interface RequestOldRoutesState {
 	requestOldRoutes: string[];
@@ -22,12 +28,14 @@ declare interface RequestOldRoutesState {
 // TagsView 路由列表
 declare interface TagsViewRoutesState<T = any> {
 	tagsViewRoutes: T[];
+	isTagsViewCurrenFull: Boolean;
 }
-
 
 // 路由列表
 declare interface RoutesListState<T = any> {
 	routesList: T[];
+	isColumnsMenuHover: Boolean;
+	isColumnsNavHover: Boolean;
 }
 
 // 布局配置

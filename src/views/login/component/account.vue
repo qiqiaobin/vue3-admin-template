@@ -8,7 +8,12 @@
 			</el-input>
 		</el-form-item>
 		<el-form-item class="login-animation2">
-			<el-input :type="state.isShowPassword ? 'text' : 'password'" placeholder="密码：123456" v-model="state.ruleForm.password" autocomplete="off">
+			<el-input
+				:type="state.isShowPassword ? 'text' : 'password'"
+				placeholder="密码：123456"
+				v-model="state.ruleForm.password"
+				autocomplete="off"
+			>
 				<template #prefix>
 					<el-icon class="el-input__icon"><ele-Unlock /></el-icon>
 				</template>
@@ -24,7 +29,14 @@
 		</el-form-item>
 		<el-form-item class="login-animation3">
 			<el-col :span="15">
-				<el-input text maxlength="4" placeholder="请输入验证码" v-model="state.ruleForm.code" clearable autocomplete="off">
+				<el-input
+					text
+					maxlength="4"
+					placeholder="请输入验证码"
+					v-model="state.ruleForm.code"
+					clearable
+					autocomplete="off"
+				>
 					<template #prefix>
 						<el-icon class="el-input__icon"><ele-Position /></el-icon>
 					</template>

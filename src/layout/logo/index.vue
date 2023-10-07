@@ -1,16 +1,16 @@
 <template>
 	<div class="layout-logo" @click="onThemeConfigChange">
-		<img :src="logoMini"  class="layout-logo-medium-img" />
+		<img :src="logo" class="layout-logo-medium-img" />
 		<span>
-            {{ themeConfig.globalTitle }}
-        </span>
+      {{ themeConfig.globalTitle }}
+    </span>
 	</div>
 </template>
 
 <script setup lang="ts" name="layoutLogo">
 import { storeToRefs } from 'pinia';
 import { useThemeConfig } from '/@/stores/themeConfig';
-import logoMini from '/@/assets/logo.svg';
+import logo from '/@/assets/logo.svg';
 
 // 定义变量内容
 const storesThemeConfig = useThemeConfig();
@@ -36,26 +36,35 @@ const onThemeConfigChange = () => {
 	span {
 		white-space: nowrap;
 		display: inline-block;
-        padding-left: 13px;
+    padding-left: 13px;
 	}
-    
+	&:hover {
+		span {
+			color: var(--color-primary-light-2);
+		}
+	}
 	&-medium-img {
-		width: 30px;
-		margin-left: 20px;
+		width: 20px;
+		margin-right: 5px;
 	}
 }
 .layout-logo-size {
-    font-size: 16px;
+  font-size: 16px;
 	height: 58px;
-    line-height: 58px;
-    margin-left: 33px;
-    padding-left: 38px;
+  line-height: 58px;
+  margin-left: 33px;
+  padding-left: 38px;
 	display: flex;
 	cursor: pointer;
 	animation: logoAnimation 0.3s ease-in-out;
 	&-img {
 		width: 20px;
 		margin: auto;
+	}
+	&:hover {
+		img {
+			animation: logoAnimation 0.3s ease-in-out;
+		}
 	}
 }
 </style>

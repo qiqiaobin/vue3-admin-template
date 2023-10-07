@@ -1,12 +1,12 @@
 <template>
 	<el-config-provider :size="getGlobalComponentSize" :locale="zhCn">
-		<router-view  />
-        <Setings ref="setingsRef" />
+		<router-view />
+		<Setings ref="setingsRef" />
 	</el-config-provider>
 </template>
 
 <script setup lang="ts" name="app">
-import { defineAsyncComponent, computed, ref, onBeforeMount, onMounted, nextTick, watch } from 'vue';
+import { defineAsyncComponent, computed, ref, onBeforeMount, onMounted,  nextTick, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import zhCn from 'element-plus/es/locale/lang/zh-cn';
 import { useThemeConfig } from '/@/stores/themeConfig';
@@ -26,6 +26,7 @@ const storesThemeConfig = useThemeConfig();
 const getGlobalComponentSize = computed(() => {
 	return other.globalComponentSize();
 });
+
 // 设置初始化，防止刷新时恢复默认
 onBeforeMount(() => {
 	// 设置批量第三方 icon 图标
@@ -35,8 +36,8 @@ onBeforeMount(() => {
 });
 // 页面加载时
 onMounted(() => {
-    nextTick(() => {
-        // 获取缓存中的布局配置
+	nextTick(() => {
+		// 获取缓存中的布局配置
 		if (Local.get('themeConfig')) {
 			storesThemeConfig.setThemeConfig({ themeConfig: Local.get('themeConfig') });
 			document.documentElement.style.cssText = Local.get('themeConfigStyle');

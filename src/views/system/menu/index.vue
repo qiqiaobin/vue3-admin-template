@@ -9,7 +9,7 @@
 					</el-icon>
 					查询
 				</el-button>
-				<el-button size="default" type="success" class="ml10" @click="onOpenAddMenu" v-auth="'/system/menu/add'">
+				<el-button size="default" type="success" class="ml10" @click="onOpenAddMenu">
 					<el-icon>
 						<ele-FolderAdd />
 					</el-icon>

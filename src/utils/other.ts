@@ -45,7 +45,7 @@ export function useTitle() {
 }
 
 /**
- * 设置 自定义 tagsView 名称
+ * 设置 自定义 tagsView 名称、 自定义 tagsView 名称国际化
  * @param params 路由 query、params 中的 tagsViewName
  * @returns 返回当前 tagsViewName 名称
  */
@@ -175,6 +175,7 @@ export function handleOpenLink(val: RouteItem) {
  * @method deepClone 对象深克隆
  * @method isMobile 判断是否是移动端
  * @method handleEmpty 判断数组对象中所有属性是否为空，为空则删除当前行对象
+ * @method handleOpenLink 打开外部链接
  */
 const other = {
 	elSvg: (app: App) => {

@@ -205,8 +205,8 @@
 import { defineAsyncComponent, reactive, onMounted, watch, nextTick, onActivated, ref } from 'vue';
 import * as echarts from 'echarts';
 import 'echarts-wordcloud';
-//import { storeToRefs } from 'pinia';
-//import { useTagsViewRoutes } from '/@/stores/tagsViewRoutes';
+import { storeToRefs } from 'pinia';
+import { useTagsViewRoutes } from '/@/stores/tagsViewRoutes';
 import { skyList, dBtnList, chartData4List } from '/@/views/chart/chart';
 
 // 引入组件
@@ -218,8 +218,8 @@ const chartsSevenDaysRef = ref();
 const chartsWarningRef = ref();
 const chartsMonitorRef = ref();
 const chartsInvestmentRef = ref();
-//const storesTagsViewRoutes = useTagsViewRoutes();
-//const { isTagsViewCurrenFull } = storeToRefs(storesTagsViewRoutes);
+const storesTagsViewRoutes = useTagsViewRoutes();
+const { isTagsViewCurrenFull } = storeToRefs(storesTagsViewRoutes);
 const state = reactive({
 	skyList,
 	dBtnList,
@@ -464,6 +464,12 @@ onActivated(() => {
 	initEchartsResizeFun();
 });
 // 监听 pinia 中的 tagsview 开启全屏变化，重新 resize 图表，防止不出现/大小不变等
+watch(
+	() => isTagsViewCurrenFull.value,
+	() => {
+		initEchartsResizeFun();
+	}
+);
 </script>
 
 <style scoped lang="scss">

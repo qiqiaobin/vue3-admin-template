@@ -8,14 +8,12 @@ import { RouteRecordRaw } from 'vue-router';
  *      title:          菜单栏及 tagsView 栏、菜单搜索名称（国际化）
  *      isLink：        是否超链接菜单，开启外链条件，`1、isLink: 链接地址不为空 2、isIframe:false`
  *      isHide：        是否隐藏此路由
+ *      isKeepAlive：   是否缓存组件状态
  *      isIframe：      是否内嵌窗口，开启条件，`1、isIframe:true 2、isLink：链接地址不为空`
- *      permissions         当前路由权限标识，控制路由权限
+ *      permissions：   当前路由权限标识，控制路由权限
  *      icon：          菜单、tagsView 图标，阿里：加 `iconfont xxx`，fontawesome：加 `fa xxx`
  * }
  */
-
-
-
 
 // 扩展 RouteMeta 接口
 declare module 'vue-router' {
@@ -23,7 +21,9 @@ declare module 'vue-router' {
 		title?: string;
 		isLink?: string;
 		isHide?: boolean;
+		isKeepAlive?: boolean;
 		isIframe?: boolean;
+		roles?: string[];
     permissions?: string[];
 		icon?: string;
 	}
@@ -42,6 +42,9 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 		name: '/',
 		component: () => import('/@/layout/index.vue'),
 		redirect: '/home',
+		meta: {
+			isKeepAlive: true,
+		},
 		children: [
 			{
 				path: '/home',
@@ -51,7 +54,10 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 					title: '首页',
 					isLink: '',
 					isHide: false,
+					isKeepAlive: true,
+					isAffix: true,
 					isIframe: false,
+					roles: ['admin', 'common'],
           permissions:['/home'],
 					icon: 'iconfont icon-shouye',
 				},
@@ -65,7 +71,10 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 					title: '系统设置',
 					isLink: '',
 					isHide: false,
+					isKeepAlive: true,
+					isAffix: false,
 					isIframe: false,
+					roles: ['admin'],
           permissions:['/system'],
 					icon: 'iconfont icon-xitongshezhi',
 				},
@@ -78,7 +87,10 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 							title: '菜单管理',
 							isLink: '',
 							isHide: false,
+							isKeepAlive: true,
+							isAffix: false,
 							isIframe: false,
+							roles: ['admin'],
               permissions:['/system/menu'],
 							icon: 'iconfont icon-caidan',
 						},
@@ -91,7 +103,10 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 							title: '角色管理',
 							isLink: '',
 							isHide: false,
+							isKeepAlive: true,
+							isAffix: false,
 							isIframe: false,
+							roles: ['admin'],
               permissions:['/system/role'],
 							icon: 'ele-ColdDrink',
 						},
@@ -104,7 +119,10 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 							title: '用户管理',
 							isLink: '',
 							isHide: false,
+							isKeepAlive: true,
+							isAffix: false,
 							isIframe: false,
+							roles: ['admin'],
               permissions:['/system/user'],
 							icon: 'iconfont icon-icon-',
 						},
@@ -117,7 +135,10 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 							title: '部门管理',
 							isLink: '',
 							isHide: false,
+							isKeepAlive: true,
+							isAffix: false,
 							isIframe: false,
+							roles: ['admin'],
               permissions:['/system/dept'],
 							icon: 'ele-OfficeBuilding',
 						},
@@ -130,14 +151,103 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 							title: '字典管理',
 							isLink: '',
 							isHide: false,
+							isKeepAlive: true,
+							isAffix: false,
 							isIframe: false,
+							roles: ['admin'],
               permissions:['/system/dic'],
 							icon: 'ele-SetUp',
 						},
 					},
 				],
 			},
-      {
+			{
+				path: '/limits',
+				name: 'limits',
+				component: () => import('/@/layout/routerView/parent.vue'),
+				redirect: '/limits/frontEnd',
+				meta: {
+					title: '权限管理',
+					isLink: '',
+					isHide: false,
+					isKeepAlive: true,
+					isAffix: false,
+					isIframe: false,
+					roles: ['admin', 'common'],
+          permissions:['/limits'],
+					icon: 'iconfont icon-quanxian',
+				},
+				children: [
+					{
+						path: '/limits/frontEnd',
+						name: 'limitsFrontEnd',
+						component: () => import('/@/layout/routerView/parent.vue'),
+						redirect: '/limits/frontEnd/page',
+						meta: {
+							title: '前端控制',
+							isLink: '',
+							isHide: false,
+							isKeepAlive: true,
+							isAffix: false,
+							isIframe: false,
+							roles: ['admin', 'common'],
+							icon: '',
+						},
+						children: [
+							{
+								path: '/limits/frontEnd/page',
+								name: 'limitsFrontEndPage',
+								component: () => import('/@/views/limits/frontEnd/page/index.vue'),
+								meta: {
+									title: '页面权限',
+									isLink: '',
+									isHide: false,
+									isKeepAlive: true,
+									isAffix: false,
+									isIframe: false,
+									roles: ['admin', 'common'],
+                  permissions:['/limits/frontEnd/page'],
+									icon: '',
+								},
+							},
+						],
+					},
+					{
+						path: '/limits/backEnd',
+						name: 'limitsBackEnd',
+						component: () => import('/@/layout/routerView/parent.vue'),
+						meta: {
+							title: '后端控制',
+							isLink: '',
+							isHide: false,
+							isKeepAlive: true,
+							isAffix: false,
+							isIframe: false,
+							roles: ['admin', 'common'],
+							icon: '',
+						},
+						children: [
+							{
+								path: '/limits/backEnd/page',
+								name: 'limitsBackEndEndPage',
+								component: () => import('/@/views/limits/backEnd/page/index.vue'),
+								meta: {
+									title: '页面权限',
+									isLink: '',
+									isHide: false,
+									isKeepAlive: true,
+									isAffix: false,
+									isIframe: false,
+									roles: ['admin', 'common'],
+                  permissions:['/limits/backEnd/page'],
+									icon: '',
+								},
+							},
+						],
+					},
+				],
+			},
+			{
 				path: '/chart',
 				name: 'chartIndex',
 				component: () => import('/@/views/chart/index.vue'),
@@ -145,12 +255,15 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 					title: '大数据图表',
 					isLink: '',
 					isHide: false,
+					isKeepAlive: true,
+					isAffix: false,
 					isIframe: false,
+					roles: ['admin', 'common'],
           permissions:['/chart'],
 					icon: 'iconfont icon-ico_shuju',
 				},
 			},
-      {
+			{
 				path: '/personal',
 				name: 'personal',
 				component: () => import('/@/views/personal/index.vue'),
@@ -158,12 +271,15 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 					title: '个人中心',
 					isLink: '',
 					isHide: false,
+					isKeepAlive: true,
+					isAffix: false,
 					isIframe: false,
+					roles: ['admin', 'common'],
           permissions:['/personal'],
 					icon: 'iconfont icon-gerenzhongxin',
 				},
 			},
-            {
+			{
 				path: '/tree',
 				name: 'tree',
 				component: () => import('/@/views/tree/index.vue'),

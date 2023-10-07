@@ -4,7 +4,7 @@
 			<template v-for="val in menuLists">
 				<el-sub-menu :index="val.path" v-if="val.children && val.children.length > 0" :key="val.path">
 					<template #title>
-						<!--SvgIcon :name="val.meta.icon" /-->
+						<SvgIcon :name="val.meta.icon" />
 						<span>{{ val.meta.title }}</span>
 					</template>
 					<SubItem :chil="val.children" />
@@ -12,12 +12,12 @@
 				<template v-else>
 					<el-menu-item :index="val.path" :key="val.path">
 						<template #title v-if="!val.meta.isLink || (val.meta.isLink && val.meta.isIframe)">
-							<!--SvgIcon :name="val.meta.icon" /-->
+							<SvgIcon :name="val.meta.icon" />
 							{{ val.meta.title }}
 						</template>
 						<template #title v-else>
 							<a class="w100" @click.prevent="onALinkClick(val)">
-								<!--SvgIcon :name="val.meta.icon" /-->
+								<SvgIcon :name="val.meta.icon" />
 								{{ val.meta.title }}
 							</a>
 						</template>
@@ -120,8 +120,7 @@ onBeforeRouteUpdate((to) => {
 // 横向菜单
 .el-menu--horizontal {
 	background: #182132;
-  .el-menu-item,  
-  .el-sub-menu {
+    .el-sub-menu {
 		height: 48px !important;
 		line-height: 48px !important;
     font-size: 14px;
@@ -135,11 +134,8 @@ onBeforeRouteUpdate((to) => {
 		.el-popper.is-pure.is-light {
 			.el-menu--horizontal {
 				.el-sub-menu .el-sub-menu__title {
-					background-color: #96a2b9;
+					background-color: #979ba5;
 					color: #ffffff;
-				}
-        .el-sub-menu.is-active .el-sub-menu__title {
-					color: #e1ecff;
 				}
 			}
 		}
@@ -177,12 +173,12 @@ onBeforeRouteUpdate((to) => {
 		color: #e1ecff;
     background: #31405e;
 	}
-  .el-menu-item.is-active,
-  .el-sub-menu.is-active .el-sub-menu__title,
-  .el-sub-menu:not(.is-opened):hover .el-sub-menu__title {
+    .el-menu-item.is-active,
+    .el-sub-menu.is-active .el-sub-menu__title,
+    .el-sub-menu:not(.is-opened):hover .el-sub-menu__title {
     background: #31405e !important;
     color: #ffffff !important;
     border-bottom: none !important;
-  }
+   }
 }
 </style>

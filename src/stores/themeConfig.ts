@@ -14,7 +14,7 @@ export const useThemeConfig = defineStore('themeConfig', {
 			// 是否开启菜单水平折叠效果
 			isCollapse: false,
 
-			// 主页面切换动画：可选值"<slide-right|slide-left|opacitys>"，默认 slide-right
+      // 主页面切换动画：可选值"<slide-right|slide-left|opacitys>"，默认 slide-right
 			animation: 'slide-right',
 
 			/**

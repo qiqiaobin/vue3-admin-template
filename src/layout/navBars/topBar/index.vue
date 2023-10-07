@@ -7,10 +7,11 @@
 </template>
 
 <script setup lang="ts" name="layoutBreadcrumbIndex">
-import { defineAsyncComponent, reactive, onMounted, onUnmounted } from 'vue';
+import { defineAsyncComponent, computed, reactive, onMounted, onUnmounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import { useRoutesList } from '/@/stores/routesList';
+import { useThemeConfig } from '/@/stores/themeConfig';
 import mittBus from '/@/utils/mitt';
 
 // 引入组件
@@ -82,7 +83,6 @@ onUnmounted(() => {
 	display: flex;
 	align-items: center;
 	background: #182132;
-	//border-bottom: none !important;
-  border-bottom: 1px solid #f1f2f3;
+	border-bottom: 1px solid #f1f2f3;
 }
 </style>

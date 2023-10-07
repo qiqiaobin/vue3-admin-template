@@ -59,11 +59,9 @@
 <script setup lang="ts" name="systemRole">
 import { defineAsyncComponent, reactive, onMounted, ref } from 'vue';
 import { ElMessageBox, ElMessage } from 'element-plus';
-import { auth } from '/@/utils/authFunction';
 
 // 引入组件
 const RoleDialog = defineAsyncComponent(() => import('/@/views/system/role/dialog.vue'));
-//const Auth = defineAsyncComponent(() => import('/@/components/auth/auth.vue'));
 
 // 定义变量内容
 const roleDialogRef = ref();
@@ -79,7 +77,6 @@ const state = reactive<SysRoleState>({
 		},
 	},
 });
-
 // 初始化表格数据
 const getTableData = () => {
 	state.tableData.loading = true;
@@ -102,12 +99,7 @@ const getTableData = () => {
 };
 // 打开新增角色弹窗
 const onOpenAddRole = (type: string) => {
-    if (!auth('/system/role/add')){
-        ElMessage.error('抱歉，您没有权限！');
-    }else{
-        ElMessage.success('恭喜，您有权限！');
 	roleDialogRef.value.openDialog(type);
-    }
 };
 // 打开修改角色弹窗
 const onOpenEditRole = (type: string, row: Object) => {
